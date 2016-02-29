@@ -1,0 +1,121 @@
+html{
+	font-size: 62.5%;
+}
+
+body{
+	/*-webkit-background-size: cover;
+	background-size: cover;*/
+	background: #0F0F0F;
+	/*background: #000;*/
+	/*background: url(../images/logo-1.jpg) no-repeat;*/
+	color: #ccc;
+}
+
+.container{
+	/*background: #000;*/
+	background: #0F0F0F;
+}
+
+img{
+	max-width: 100%;
+/*	width: 100px ;
+	height: 100px ;*/
+}
+
+
+.border{
+	border: 1px solid #ccc;
+	background: #0F0F0F;
+	display: inline-block;
+	padding: 0 10px;
+}
+
+b {
+	color: #fff;
+}
+
+/*--------------------------- navbar .................................*/
+.logo .img-logo{
+	height: 50px;
+}
+
+.navbar-fixed-top{
+	/*padding-left: 20px;*/
+	padding-right: 20px;
+}
+
+.navbar-brand img{
+	width: 60px;
+}
+
+.navbar-brand{
+	background: #000;
+}
+
+/*.navbar-brand a:hover{
+	background: #333232;
+}
+*/
+/*.nav .navbar-nav .navbar-right .btn{
+	padding: 5px;
+}*/
+
+/*----------------------------------------------------------------*/
+
+
+/*.row{
+	margin-left: 0;
+	margin-right: 0;
+}*/
+
+.form-horizontal .form-group{
+	margin-left: 0;
+	margin-right: 0;
+}
+
+/*---------------------------- plat --------------------------------*/
+
+.plat{
+	font-family: 'Montserrat', sans-serif;
+	/*border-bottom: 1px solid #333232;*/
+	margin: 0 0 10px 0;
+}
+
+.jour{
+	text-align: left;
+	font-size: 3rem;
+
+}
+.img-plat{
+	margin-bottom: 20px;
+}
+
+/*.home{
+	border: 1px solid #333232;
+
+}*/
+
+.footer{
+	text-align: center;
+	padding: 20px;
+}
+
+
+
+.scrollup{
+    width:40px;
+    height:50px;
+    opacity:0.5;
+    bottom:60px;
+    position:fixed;
+    right:30px;
+    text-indent:-999px;
+    background: url('http://i66.tinypic.com/6t3jba.png') no-repeat;
+    display:none;
+    cursor:pointer;
+    z-index: 9999;
+}
+
+/*label strong{
+	color: #0F0F0F;
+}*/

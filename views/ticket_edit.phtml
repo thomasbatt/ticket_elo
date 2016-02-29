@@ -1,0 +1,14 @@
+
+<div class="col-xs-12">
+	<form method="post" action="index.php?page=tickets&traitement=traitement_ticket">
+    	<p>
+    		<?=$count?> - 
+    		<input type="hidden" name="count" value="<?=$count?>" >
+    		<input type="hidden" name="etat" value="editer" >
+    		<input type="text" name="contenu" value="<?=$tickets[$count]['contenu']?>" >
+	        <button>SUBMIT</button>
+	        <br>
+	        <br>
+		</p>
+	</form>
+</div>

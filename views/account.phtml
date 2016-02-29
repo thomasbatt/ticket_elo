@@ -1,0 +1,33 @@
+<h1>Votre tableau de bord, <b><?=htmlentities($_SESSION['login'])?></b></h1>
+
+<div class="row border">
+	<h2>Vos informations</h2>
+
+	<h3>Login : <b><?=htmlentities($_SESSION['login'])?></b></h3>
+	<h3>Email : <b><?=htmlentities($email)?></b></h3>
+	<h3>Téléphone : <b><?=htmlentities($phone)?></b></h3>
+	<h3>Avatar : <b><?=htmlentities($avatar)?></b></h3>
+	<h3>Prénom : <b><?=htmlentities($first_name)?></b></h3>
+	<h3>Nom : <b><?=htmlentities($last_name)?></b></h3>
+	<h3>Statut : <b><?=htmlentities($statut)?></b></h3>
+
+</div>
+
+	<h3>Modifier les paramètres de votre compte :</h3>
+
+	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-edit-user">Informations personnelles</button>
+
+	<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal-edit-secure">Paramètres de sécurité</button>
+
+
+
+<h2>stats</h2>
+
+
+
+<div>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sapiente recusandae tenetur unde, totam sit quos, impedit aliquam, voluptatem amet libero ex rerum eveniet nisi accusantium! Voluptates mollitia hic nam harum.</div>
+<div>Maxime magnam consequuntur provident exercitationem reiciendis a aspernatur cum, quam! Quasi numquam asperiores consequuntur dolor mollitia animi temporibus aspernatur, labore, eligendi minima, deserunt facilis molestias quam earum. Voluptatum, error, vitae.</div>
+<div>Praesentium omnis repellendus expedita eligendi modi, numquam quas provident quisquam nisi dolorum itaque maxime sunt consectetur explicabo, iste similique, dolore ab recusandae unde placeat, hic dolorem fuga. Eligendi, rerum, illo!</div>
+<div>Quis quam perspiciatis, nemo quia beatae explicabo dolorem praesentium, doloribus cupiditate fugit. Illum mollitia eius, quasi aliquam dolorem nisi, incidunt quo impedit dolorum accusantium officia maxime iusto debitis enim perferendis!</div>
+
+<?php require('apps/edit_user.php');?>

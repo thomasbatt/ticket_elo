@@ -1,0 +1,7 @@
+<div class="col-xs-4 chkbox">
+	<form method="post" action="index.php?page=tickets&traitement=traitement_ticket">
+   		<input type="hidden" name="count" value="<?=$count?>"/>
+   		<button name="etat" value="fait">></button>  
+  		<input type="hidden" name="contenu" value="<?=$tickets[$count]['contenu']?>" />
+	</form>
+</div>
