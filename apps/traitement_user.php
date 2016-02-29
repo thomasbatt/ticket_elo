@@ -27,7 +27,7 @@ if (isset($_POST['action']))
 			{
 				// Etape 4
 				$login = mysqli_real_escape_string($db, $login);
-				$query = "SELECT * FROM bistrot_users WHERE login='".$login."'";
+				$query = "SELECT * FROM ticket_users WHERE login='".$login."'";
 				$res = mysqli_query($db, $query);
 				if ($res)
 				{
@@ -40,7 +40,7 @@ if (isset($_POST['action']))
 							$_SESSION['id'] = $user['id'];
 							$_SESSION['login'] = $user['login'];
 							$_SESSION['role'] = $user['role'];
-							header('Location: list_plat');
+							header('Location: index.php');
 							exit;
 						}
 						else
@@ -86,7 +86,7 @@ if (isset($_POST['action']))
 				$password = password_hash($password, PASSWORD_BCRYPT, ['cost'=>12]);
 				$password = mysqli_real_escape_string($db, $password);
 
-				$query = "INSERT INTO bistrot_users (login, password, email, phone, first_name, last_name, avatar) VALUES('".$login."', '".$password."', '".$email."', '".$phone."', '".$first_name."', '".$last_name."', '".$avatar."')";
+				$query = "INSERT INTO ticket_users (login, password, email, phone, first_name, last_name, avatar) VALUES('".$login."', '".$password."', '".$email."', '".$phone."', '".$first_name."', '".$last_name."', '".$avatar."')";
 				$res = mysqli_query($db, $query);
 				if ($res)
 				{
@@ -96,7 +96,7 @@ if (isset($_POST['action']))
 							$_SESSION['id'] = mysqli_insert_id($db);
 							$_SESSION['login'] = $login;
 							$_SESSION['role'] = 'user';
-							header('Location: list_plat');
+							header('Location: index.php');
 							exit;
 				}
 				else
@@ -126,7 +126,7 @@ if (isset($_POST['action']))
 			{
 				// Etape 4
 
-				$query = "UPDATE bistrot_users SET email='".$email."', phone='".$phone."', first_name='".$first_name."', last_name='".$last_name."', avatar='".$avatar."' WHERE id='".$_SESSION['id']."'";
+				$query = "UPDATE ticket_users SET email='".$email."', phone='".$phone."', first_name='".$first_name."', last_name='".$last_name."', avatar='".$avatar."' WHERE id='".$_SESSION['id']."'";
 
 				$res = mysqli_query($db, $query);
 				if ($res)
@@ -166,7 +166,7 @@ if (isset($_POST['action']))
 			// else (strlen($login) > 31)
 			// 	$error = "Login trop long (> 31)";
 
-			$query = "SELECT * FROM bistrot_users WHERE id='".$_SESSION['id']."'";
+			$query = "SELECT * FROM ticket_users WHERE id='".$_SESSION['id']."'";
 			$res = mysqli_query($db, $query);
 			$user = mysqli_fetch_assoc($res);
 
@@ -179,13 +179,13 @@ if (isset($_POST['action']))
 				$password = password_hash($new_password, PASSWORD_BCRYPT, ['cost'=>12]);
 				$password = mysqli_real_escape_string($db, $password);
 
-				$query = "UPDATE bistrot_users SET login='".$login."', password='".$password."' WHERE id='".$_SESSION['id']."'";
+				$query = "UPDATE ticket_users SET login='".$login."', password='".$password."' WHERE id='".$_SESSION['id']."'";
 				// var_dump($query);die;
 				$res = mysqli_query($db, $query);
 				if ($res)
 				{
 					// Etape 5
-					header('Location: list_plat');
+					header('Location: index.php');
 					exit;
 				}
 				else
@@ -201,7 +201,7 @@ if (isset($_POST['action']))
 	else if ($action == 'logout'){
 		session_destroy();
 		$_SESSION = array();
-		header('Location: list_plat');
+		header('Location: index.php');
 		exit;
 	}
 	else

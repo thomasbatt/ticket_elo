@@ -2,7 +2,6 @@
 
 	<h2>Tickets :</h2>
 	<div class="row">
-	<?php require('apps/error.php'); ?>
 		<article class="col-xs-12 col-sm-4">
 			<div class="row">
 				<div class="col-xs-10">
@@ -13,19 +12,19 @@
 				        <button name="affichecreer" value="true">+</button>
 					</form>
 				</div>
-				<?php require('apps/ticket_afaire.php') ?>
+				<?php require('apps/ticket_todo.php') ?>
 			</div>
 		</article>
 		<article class="col-xs-12 col-sm-4">
 			<div class="row">
 				<h2 class='col-xs-12'>EN COURS</h2>
-				<?php require('apps/ticket_encours.php') ?>
+				<?php require('apps/ticket_doing.php') ?>
 			</div>
 		</article>
 		<article class="col-xs-12 col-sm-4">
 			<div class="row">
 				<h2 class='col-xs-12'>FAIT</h2>
-				<?php require('apps/ticket_fait.php') ?>
+				<?php require('apps/ticket_done.php') ?>
 			</div>
 		</article>
 	</div>
