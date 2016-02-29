@@ -11,7 +11,7 @@ session_start();
 
 // DATABASE
 // $domaine = 'localhost';
-$domaine = '192.168.1.31';
+$domaine = '192.168.1.8';
 // $domaine = 'mysql51-71.pro';
 $db = @mysqli_connect($domaine, "thomasbazshare", "dbshare1", "thomasbazshare");
 if (!$db)
