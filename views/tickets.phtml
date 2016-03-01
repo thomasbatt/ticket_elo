@@ -1,32 +1,17 @@
-<div class="col-xs-12 section special">
-
-	<h2>Tickets :</h2>
+<div class="page-header">
+	<h1>Home</h1>
+</div>
+<div class="container">
 	<div class="row">
-		<article class="col-xs-12 col-sm-4">
-			<div class="row">
-				<div class="col-xs-10">
-					<h2>A FAIRE</h2>
-				</div>
-				<div class="col-xs-2">
-					<form method="post">
-				        <button name="affichecreer" value="true">+</button>
-					</form>
-				</div>
-				<?php require('apps/ticket_todo.php') ?>
-			</div>
-		</article>
-		<article class="col-xs-12 col-sm-4">
-			<div class="row">
-				<h2 class='col-xs-12'>EN COURS</h2>
-				<?php require('apps/ticket_doing.php') ?>
-			</div>
-		</article>
-		<article class="col-xs-12 col-sm-4">
-			<div class="row">
-				<h2 class='col-xs-12'>FAIT</h2>
-				<?php require('apps/ticket_done.php') ?>
-			</div>
-		</article>
+		
+		<div class="col-sm-4 shorter">
+			<?php require('apps/display_todo.php'); ?>
+		</div>
+		<div class="col-sm-4 shorter">
+			<?php require('apps/display_current.php'); ?>
+		</div>
+		<div class="col-sm-4 shorter">
+			<?php require('apps/display_done.php'); ?>
+		</div>
 	</div>
-
 </div>

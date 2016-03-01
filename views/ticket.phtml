@@ -1,8 +1,20 @@
-<div class="col-xs-7">
-	<p>
-		<?php
-			echo $count.' - '.$tickets[$count]['contenu'].'<BR>le'.$tickets[$count]['date'];
-		?>
-	</p>
-</div>
-<?php require ('apps/ticket_lien.php'); ?>
+<li class="list-group-item ticket">
+	<div class="media">
+		<div class="media-left">
+			<center>
+				19/01/2018 05:05
+				<a target="_blank" href="<?=$ticket['image']?>">
+					<img class="media-object" src="<?=$ticket['image']?>" alt="image" style="max-height:64px;max-width:64px;">
+				</a>
+			</center>
+		</div>
+		<div class="media-body">
+			<h4 class="media-heading"><?=$ticket['title']?></h4>
+			<div style="word-wrap: break-word;max-width:230px;"><?=$ticket['description']?></div>
+		</div>
+		<div>
+			<?=implode('<br>', $ticket['steps'])?>
+		</div>
+	</div>
+	<?php require('apps/ticket_status.php'); ?>
+</li>
