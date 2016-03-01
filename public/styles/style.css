@@ -67,6 +67,11 @@ code {
 .dropdown-menu{
   min-width: 0px;
 }
+.avatar-left{
+  display: inline-block;
+  text-align: right;
+  max-height: 200px;
+}
 @media screen and (min-width: 200px) and (max-width: 770px) {
   .navbar-nav{
       margin-left: 10%;

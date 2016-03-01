@@ -2,7 +2,6 @@
  // DEBUG
 // var_dump('coucou');
 // var_dump('coucou');
-// var_dump($_POST);
 // var_dump($_GET);
 // exit;
 // Etape 1
@@ -57,7 +56,9 @@ if (isset($_POST['action']))
 	else if ($action == 'register')
 	{
 		// Etape 1
-		if (isset($_POST['login'], $_POST['password1'], $_POST['password2'], $_POST['email'], $_POST['phone'], $_POST['first_name'], $_POST['last_name'], $_POST['avatar']))
+// var_dump($_POST, $_FILES);
+// exit;
+		if (isset($_POST['login'], $_POST['password1'], $_POST['password2'], $_POST['email'], $_POST['phone'], $_POST['first_name'], $_POST['last_name'], $_FILES['avatar']))
 		{
 
 			// Etape 2
@@ -68,7 +69,6 @@ if (isset($_POST['action']))
 			$phone = $_POST['phone'];
 			$first_name = $_POST['first_name'];
 			$last_name = $_POST['last_name'];
-			$avatar = $_POST['avatar'];
 			// Etape 3
 			if (strlen($login) < 3)
 				$error = "Login trop court (< 3)";
@@ -85,22 +85,45 @@ if (isset($_POST['action']))
 				$login = mysqli_real_escape_string($db, $login);
 				$password = password_hash($password, PASSWORD_BCRYPT, ['cost'=>12]);
 				$password = mysqli_real_escape_string($db, $password);
-
-				$query = "INSERT INTO ticket_users (login, password, email, phone, first_name, last_name, avatar) VALUES('".$login."', '".$password."', '".$email."', '".$phone."', '".$first_name."', '".$last_name."', '".$avatar."')";
-				$res = mysqli_query($db, $query);
-				if ($res)
+				//VERIFICATION DE L'IMAGE -------------------------------------------------------------------------J.O.-------------------------------
+	
+				$extensions_valides = array( 'jpg' , 'jpeg' , 'gif' , 'png' );
+				$extension_upload = strtolower(  substr(  strrchr($_FILES['avatar']['name'], '.')  ,1)  );
+				
+				if ( in_array($extension_upload,$extensions_valides) ) 
+					echo "Extension correcte";
+				$name = md5(uniqid(rand(), true)).'.'.$extension_upload;
+				$avatar = move_uploaded_file($_FILES['avatar']['tmp_name'], 'public/avatar/'.$name);
+				if ($avatar)
 				{
-					// Etape 5
+					$query = "INSERT INTO ticket_users (login, password, email, phone, first_name, last_name, avatar) VALUES('".$login."', '".$password."', '".$email."', '".$phone."', '".$first_name."', '".$last_name."', '".$name."')";
+					//--------------------------------------------------------------------------------------------------J.O.-------------------------------
+					$res = mysqli_query($db, $query);
+					// var_dump(mysqli_error($db));
+					// exit;
+					if ($res)
+					{
+						// Etape 5
 
-					// Etape 5
-							$_SESSION['id'] = mysqli_insert_id($db);
-							$_SESSION['login'] = $login;
-							$_SESSION['role'] = 'user';
-							header('Location: index.php');
-							exit;
+						// Etape 5
+								$_SESSION['id'] = mysqli_insert_id($db);
+								$_SESSION['login'] = $login;
+								$_SESSION['role'] = 'user';
+								header('Location: index.php');
+								exit;
+					}
+					else
+						$error = "Erreur interne au serveur";
 				}
-				else
-					$error = "Erreur interne au serveur";
+
+
+
+
+
+
+
+
+
 			}
 		}
 	}
@@ -108,14 +131,14 @@ if (isset($_POST['action']))
 	else if ($action == 'edit_user')
 	{
 		// Etape 1
-		if (isset($_POST['email'], $_POST['phone'], $_POST['first_name'], $_POST['last_name'], $_POST['avatar']))
+		if (isset($_POST['email'], $_POST['phone'], $_POST['first_name'], $_POST['last_name'], $_FILES['avatar']))
 		{
 			// Etape 2
 			$email = $_POST['email'];
 			$phone = $_POST['phone'];
 			$first_name = $_POST['first_name'];
 			$last_name = $_POST['last_name'];
-			$avatar = $_POST['avatar'];
+			$avatar = $_FILES['avatar'];
 
 			// Etape 3
 			// if (strlen($login) < 3)
@@ -126,7 +149,22 @@ if (isset($_POST['action']))
 			{
 				// Etape 4
 
-				$query = "UPDATE ticket_users SET email='".$email."', phone='".$phone."', first_name='".$first_name."', last_name='".$last_name."', avatar='".$avatar."' WHERE id='".$_SESSION['id']."'";
+				//VERIFICATION DE L'IMAGE -------------------------------------------------------------------------J.O.-------------------------------
+	
+				$extensions_valides = array( 'jpg' , 'jpeg' , 'gif' , 'png' );
+				$extension_upload = strtolower(  substr(  strrchr($_FILES['avatar']['name'], '.')  ,1)  );
+				
+				if ( in_array($extension_upload,$extensions_valides) ) 
+					echo "Extension correcte";
+				$name = md5(uniqid(rand(), true)).'.'.$extension_upload;
+				$avatar = move_uploaded_file($_FILES['avatar']['tmp_name'], 'public/avatar/'.$name);
+				if ($avatar)
+				{
+
+				$query = "UPDATE ticket_users SET email='".$email."', phone='".$phone."', first_name='".$first_name."', last_name='".$last_name."', avatar='".$name."' WHERE id='".$_SESSION['id']."'";
+
+				//--------------------------------------------------------------------------------------------------J.O.-------------------------------
+
 
 				$res = mysqli_query($db, $query);
 				if ($res)
@@ -138,6 +176,7 @@ if (isset($_POST['action']))
 				else
 					$error = "Erreur interne au serveur";
 			}
+		}
 		}
 	}
 
