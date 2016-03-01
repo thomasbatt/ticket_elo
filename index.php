@@ -10,8 +10,8 @@
 session_start();
 
 // DATABASE
-$domaine = 'localhost';
-// $domaine = '192.168.1.8';
+// $domaine = 'localhost';
+$domaine = '192.168.1.8';
 // $domaine = 'mysql51-71.pro';
 $db = @mysqli_connect($domaine, "thomasbazshare", "dbshare1", "thomasbazshare");
 if (!$db)
@@ -36,7 +36,7 @@ if (isset($_GET['page']))
 
 // SECURISATION DE LA VARIABLE ACTION -> $action
 $action = "";
-$access_action = ['edit_secure', 'edit_user', 'edit_plat', 'next_week' ,'previous_week' , 'creat_command', 'valid_command' , 'edit_command' , 'delete_command' , 'login', 'logout', 'register','creat_comment'];
+$access_action = [ 'edit_user' , 'creat_ticket', 'valid_ticket' , 'edit_ticket' , 'delete_ticket' , 'login', 'logout', 'register'];
 
 if (isset($_POST['action']))
 {
@@ -55,17 +55,15 @@ $traitements_page = [
 	'list_user'=>'user',
 ];
 $traitements_action = [
-	'edit_plat'=>'plat',
-	'next_week'=>'plat',
-	'previous_week'=>'plat',
-	'creat_command'=>'command',
-	'valid_command'=>'command',
-	'edit_command'=>'command',
-	'delete_command'=>'command',
+	'creat_ticket'=>'ticket',
+	'valid_ticket'=>'ticket',
+	'edit_ticket'=>'ticket',
+	'delete_ticket'=>'ticket',
 	'login'=>'user',
 	'logout'=>'user',
-	'register'=>'user',
-	'creat_comment'=>'comment'
+	'register'=>'user'
+
+
 ];
 if ( isset($traitements_page[$page]) )
 	$traitement = $traitements_page[$page];

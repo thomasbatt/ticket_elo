@@ -197,7 +197,6 @@ if (isset($_POST['action']))
 			
 		}
 	}
-
 	else if ($action == 'logout'){
 		session_destroy();
 		$_SESSION = array();
