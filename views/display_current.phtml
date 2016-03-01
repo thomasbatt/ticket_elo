@@ -1,5 +1,5 @@
 <div class="panel panel-info">
-	<div class="panel-heading"><span class="glyphicon glyphicon-play"></span> <?=sizeof($list)?> tickets en cours</div>
+	<div class="panel-heading"><span class="glyphicon glyphicon-play"></span> <?=htmlentities($list_count)?> tickets en cours</div>
 	<ul class="list-group">
 		<?php require('apps/display_list.php'); ?>
 	</ul>
