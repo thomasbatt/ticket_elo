@@ -67,3 +67,14 @@ code {
 .dropdown-menu{
   min-width: 0px;
 }
+@media screen and (min-width: 200px) and (max-width: 770px) {
+  .navbar-nav{
+      margin-left: 10%;
+      text-align: center;
+      display: block;
+      font-size: 2rem;
+  }
+  .navbar-left{
+      font-size: 3rem;
+  }
+}
