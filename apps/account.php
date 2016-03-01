@@ -1,6 +1,6 @@
 <?php 
 $login = mysqli_real_escape_string($db, $_SESSION['login']);
-$query = "SELECT * FROM `bistrot_users` WHERE login = '".$login."' LIMIT 0, 30 ";
+$query = "SELECT * FROM `ticket_users` WHERE login = '".$login."' LIMIT 0, 30 ";
 $res = mysqli_query($db, $query);
 	if ($res)
 	{
