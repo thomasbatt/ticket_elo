@@ -1,8 +1,8 @@
 <?php
-if ($status == 'todo')
+if ($statut == 'todo')
 	require('views/ticket_todo.phtml');
-else if ($status == 'current')
+else if ($statut == 'current')
 	require('views/ticket_current.phtml');
-else if ($status == 'done')
+else if ($statut == 'done')
 	require('views/ticket_done.phtml');
 ?>
