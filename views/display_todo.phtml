@@ -1,6 +1,6 @@
 <div class="panel panel-warning">
 	<div class="panel-heading">
-		<button class="addticket btn btn-success glyphicon glyphicon-plus"></button> <span class="glyphicon glyphicon-time"></span> <?=sizeof($list)?> tickets à faire
+		<button class="addticket btn btn-success glyphicon glyphicon-plus " name="action" value"create"></button> <span class="glyphicon glyphicon-time"></span> <?=sizeof($list)?> tickets à faire
 	</div>
 	<ul class="list-group">
 		<?php require('apps/display_list.php'); ?>

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 
     bistrot.txt
@@ -6,6 +7,8 @@
     htaccess
     schema.php
 
+=======
+>>>>>>> todo
 <?php
 class File
 {
@@ -244,5 +247,9 @@ if (isset($_GET['refresh']))
 			}, 1000);
 		</script>
 	</body>
+<<<<<<< HEAD
 </html>
 
+=======
+</html>
+>>>>>>> todo
