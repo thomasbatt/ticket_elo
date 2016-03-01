@@ -1,5 +1,5 @@
 <?php
 $list = $tickets_done;
-$status = 'done';
+$statut = 'done';
 require('views/display_done.phtml');
 ?>

@@ -1,5 +1,5 @@
 <?php
 $list = $tickets_current;
-$status = 'current';
+$statut = 'current';
 require('views/display_current.phtml');
 ?>

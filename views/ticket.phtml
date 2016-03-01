@@ -3,18 +3,18 @@
 	<div class="media">
 		<div class="media-left">
 			<center>
-				19/01/2018 05:05
-				<a target="_blank" href="<?=$ticket['image']?>">
-					<img class="media-object" src="<?=$ticket['image']?>" alt="image" style="max-height:64px;max-width:64px;">
+				<?=htmlentities($ticket_id)?>
+				<a target="_blank" href="index.php" alt="img">
+					<img class="media-object" src="url_img" alt="image" style="max-height:64px;max-width:64px;">
 				</a>
 			</center>
 		</div>
 		<div class="media-body">
-			<h4 class="media-heading"><?=$ticket['title']?></h4>
-			<div style="word-wrap: break-word;max-width:230px;"><?=$ticket['description']?></div>
+			<h4 class="media-heading"><?=htmlentities($title)?></h4>
+			<div style="word-wrap: break-word;max-width:230px;"><?=htmlentities($content)?></div>
 		</div>
 		<div>
-			<?=implode('<br>', $ticket['steps'])?>
+			<?=htmlentities($login)?>
 		</div>
 	</div>
 	<?php require('apps/ticket_status.php'); ?>
