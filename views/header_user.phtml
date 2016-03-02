@@ -22,6 +22,7 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><p class="navbar-text">Bienvenue <b><?=htmlentities($_SESSION['login'])?></b></p></li>
+        <li><img class="avatar-header" src="public/avatar/<?=htmlentities($_SESSION['avatar'])?>"></li>
         <li>
           <form method= "post">
             <button type="submit" class="btn btn-warning navbar-btn" name="action" value="logout">Se déconnecter</button>
