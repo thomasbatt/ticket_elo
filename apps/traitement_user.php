@@ -39,6 +39,7 @@ if (isset($_POST['action']))
 							$_SESSION['id'] = $user['id'];
 							$_SESSION['login'] = $user['login'];
 							$_SESSION['role'] = $user['role'];
+							$_SESSION['avatar'] = $user['avatar'];
 							header('Location: index.php');
 							exit;
 						}
