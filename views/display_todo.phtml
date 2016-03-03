@@ -1,8 +1,22 @@
 <div class="panel panel-warning">
 	<div class="panel-heading">
-		<button class="addticket btn btn-success glyphicon glyphicon-plus " name="action" value"create"></button> <span class="glyphicon glyphicon-time"></span> <?=sizeof($list)?> tickets à faire
+		<form method="post">
+			<button class="addticket btn btn-success glyphicon glyphicon-plus " name="action" value"creat_ticket"></button><span class="glyphicon glyphicon-time"></span> <?=sizeof($list)?> tickets à faire
+
+		<!-- 	<p>
+	    		<input type="hidden" name="status" value="create" >
+	    		<input type="text" name="user_id" value="<?=htmlentities($_SESSION['login'])?>">
+	    		<input type="text" name="title" placeholder="Mon titre">
+	        	<input type="text" name="content" placeholder="Mon contenu">
+	        	<input type="URL" name="img" placeholder="URL de mon image">
+	        	<button type="submit" name="action" value="creat_ticket">CRÉER</button><br><br>
+			</p> -->
+		</form>
 	</div>
 	<ul class="list-group">
+		<?php require('views/ticket_edit.phtml');?>
 		<?php require('apps/display_list.php'); ?>
 	</ul>
 </div>
+
+

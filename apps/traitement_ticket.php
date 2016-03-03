@@ -5,6 +5,7 @@ if (isset($_POST['action']))
 	$action = $_POST['action'];
 		if ($action == 'creat_ticket')
 		{
+
 				if (isset($_POST['title'],  $_POST['content'],  $_POST['img']))
 				{
 					if (isset($_SESSION['id']))
@@ -35,7 +36,7 @@ if (isset($_POST['action']))
 								$error = "Erreur interne au serveur";
 							else
 							{
-					
+								
 								header('Location: index.php');
 								exit;
 							}
