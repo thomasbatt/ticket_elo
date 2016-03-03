@@ -72,6 +72,13 @@ code {
   text-align: right;
   max-height: 200px;
 }
+
+.avatar-header{
+  height: 50px;
+  padding: 9px;
+ 
+
+}
 @media screen and (min-width: 200px) and (max-width: 770px) {
   .navbar-nav{
       margin-left: 10%;

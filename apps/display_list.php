@@ -34,5 +34,4 @@ while ($ticket_user = mysqli_fetch_assoc($res_user))
 	require('views/ticket.phtml');
 }
 
-
 ?>
