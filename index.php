@@ -39,7 +39,7 @@ if (isset($_GET['page']))
 // SECURISATION DE LA VARIABLE ACTION -> $action
 /* ##PASCAL ~> La gestion des actions doit s'effectuer directement dans le fichier qui correspond (le fichier de traitement à priori) et pas dans l'index */
 $action = "";
-$access_action = [ 'edit_user' , 'creat_ticket', 'next_ticket' , 'edit_ticket' , 'delete_ticket' , 'login', 'logout', 'register'];
+$access_action = [ 'edit_user' , 'creat_ticket', 'next_ticket' , 'valid_ticket' , 'delete_ticket' , 'login', 'logout', 'register'];
 
 if (isset($_POST['action']))
 {
@@ -60,7 +60,7 @@ $traitements_page = [
 $traitements_action = [
 	'creat_ticket'=>'ticket',
 	'next_ticket'=>'ticket',
-	'edit_ticket'=>'ticket',
+	'valid_ticket'=>'ticket',
 	'delete_ticket'=>'ticket',
 	'login'=>'user',
 	'logout'=>'user',
