@@ -4,7 +4,6 @@
 // var_dump($_GET);
 // var_dump($_POST);
 // exit;
-// coucou
 
 // SESSION
 session_start();
@@ -36,7 +35,7 @@ if (isset($_GET['page']))
 
 // SECURISATION DE LA VARIABLE ACTION -> $action
 $action = "";
-$access_action = [ 'edit_user' , 'creat_ticket', 'valid_ticket' , 'edit_ticket' , 'delete_ticket' , 'login', 'logout', 'register'];
+$access_action = [ 'edit_user' , 'creat_ticket', 'next_ticket' , 'edit_ticket' , 'delete_ticket' , 'login', 'logout', 'register'];
 
 if (isset($_POST['action']))
 {
@@ -56,7 +55,7 @@ $traitements_page = [
 ];
 $traitements_action = [
 	'creat_ticket'=>'ticket',
-	'valid_ticket'=>'ticket',
+	'next_ticket'=>'ticket',
 	'edit_ticket'=>'ticket',
 	'delete_ticket'=>'ticket',
 	'login'=>'user',
