@@ -5,15 +5,25 @@ html{
 body{
 	/*-webkit-background-size: cover;
 	background-size: cover;*/
-	background: #0F0F0F;
+<<<<<<< HEAD
+	background: #D6D7D9;
+	
+=======
+	/*background: #0F0F0F;*/
+	background: rgba(15, 15, 15, 0.04) none repeat scroll 0% 0%;
+>>>>>>> 1927a79eb57a10a8a77d3bf16450a8e66fc079e1
 	/*background: #000;*/
 	/*background: url(../images/logo-1.jpg) no-repeat;*/
-	color: #ccc;
+	color: #636363;
 }
 
 .container{
 	/*background: #000;*/
-	background: #0F0F0F;
+<<<<<<< HEAD
+	background: rgba(214,215,217,0.5);
+=======
+	/*background: #0F0F0F;*/
+>>>>>>> 1927a79eb57a10a8a77d3bf16450a8e66fc079e1
 }
 
 img{
