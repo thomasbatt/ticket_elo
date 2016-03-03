@@ -5,15 +5,16 @@ html{
 body{
 	/*-webkit-background-size: cover;
 	background-size: cover;*/
-	background: #0F0F0F;
+	/*background: #0F0F0F;*/
+	background: rgba(15, 15, 15, 0.04) none repeat scroll 0% 0%;
 	/*background: #000;*/
 	/*background: url(../images/logo-1.jpg) no-repeat;*/
-	color: #ccc;
+	color: #636363;
 }
 
 .container{
 	/*background: #000;*/
-	background: #0F0F0F;
+	/*background: #0F0F0F;*/
 }
 
 img{
