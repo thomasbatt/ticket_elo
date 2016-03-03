@@ -6,7 +6,7 @@ $query = "SELECT
 			ticket_users.id as user_id, ticket_users.avatar as url_avatar, ticket_users.first_name, ticket_users.last_name, ticket_users.login, ticket_users.phone, ticket_users.statut as user_statut
 			FROM ticket_tickets 
 			LEFT JOIN ticket_users ON ticket_tickets.user_id = ticket_users.id 
-			WHERE ticket_tickets.statut = '".$statut."'  
+			WHERE ticket_tickets.statut = '".$statut."'
 			ORDER BY ticket_tickets.id DESC";
 
 $res_user = mysqli_query($db, $query);
@@ -32,6 +32,7 @@ while ($ticket_user = mysqli_fetch_assoc($res_user))
 	$user_statut = $ticket_user['user_statut'];
 
 	// var_dump($ticket_user);
+
 	if ($editing == true)
 		$ticket_file = 'ticket_edit'; 
 	else
@@ -39,4 +40,5 @@ while ($ticket_user = mysqli_fetch_assoc($res_user))
 
 	require('views/'.$ticket_file.'.phtml');
 }
+
 ?>

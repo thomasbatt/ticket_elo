@@ -1,21 +1,22 @@
 <li class="list-group-item ticket">
-    <div class="media">
-        <div class="media-left">
-        </div>
-        <div class="media-body">
-                <input type="text" name="user_id" value="<?=htmlentities($_SESSION['login'])?>">
-                <input type="text" name="title" placeholder="Mon titre">
-            <div style="word-wrap: break-word;max-width:230px;">
-               <input type="text" name="content" placeholder="Mon contenu">
+    <form method="POST" action="" >
+        <div class="media">
+            <div class="media-left">
             </div>
-             <div style="word-wrap: break-word;max-width:230px;">
-               <input type="URL" name="img" placeholder="URL de mon image">
+            <div class="media-body">
+                    <input type="text" name="user_id" value="<?=htmlentities($_SESSION['login'])?>">
+                    <input type="text" name="title" placeholder="Mon titre">
+                <div style="word-wrap: break-word;max-width:230px;">
+                   <input type="text" name="content" placeholder="Mon contenu">
+                </div>
+                 <div style="word-wrap: break-word;max-width:230px;">
+                   <input type="URL" name="img" placeholder="URL de mon image">
+                </div>
             </div>
+                <div class="media-right">
+                    <?php require('views/ticket_valid.phtml'); ?>
+                </div>
         </div>
-        <div>
-            
-        </div>
-    </div>
-    <?php require('views/ticket_valid.phtml'); ?>
+    </form>
 </li>
 

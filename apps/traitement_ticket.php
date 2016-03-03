@@ -5,7 +5,6 @@ if (isset($_POST['action']))
 	$action = $_POST['action'];
 		if ($action == 'creat_ticket')
 		{
-
 				if (isset($_POST['title'],  $_POST['content'],  $_POST['img']))
 				{
 					if (isset($_SESSION['id']))
@@ -29,7 +28,7 @@ if (isset($_POST['action']))
 							$title = mysqli_real_escape_string($db, $title);
 							$content = mysqli_real_escape_string($db, $content);
 							$img = mysqli_real_escape_string($db, $img);
-							$query = "INSERT INTO ticket_tickets (title, content, user_id , statut, img, treatment_id) VALUES('".$title."', '".$content."', '".$_SESSION['id']."', 'todo', '".$img."', '1')";
+							$query = "INSERT INTO ticket_tickets (title, content, user_id , statut, img, treatment_id, editing) VALUES('".$title."', '".$content."', '".$_SESSION['id']."', 'todo', '".$img."', '1', '0')";
 							$res = mysqli_query($db, $query);
 							
 							if ($res === false)
@@ -46,7 +45,7 @@ if (isset($_POST['action']))
 						$error = "Vous devez etre connecté";
 				}
 			else
-				$error = "Erreur interne (vous avez essayé de m'entuber)";
+				$error = "Erreur interne";
 		}
 	else
 		$error = "Erreur interne (vous avez essayé de m'entuber)";
