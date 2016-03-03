@@ -5,7 +5,8 @@ html{
 body{
 	/*-webkit-background-size: cover;
 	background-size: cover;*/
-	background: #0F0F0F;
+	background: #D6D7D9;
+	
 	/*background: #000;*/
 	/*background: url(../images/logo-1.jpg) no-repeat;*/
 	color: #ccc;
@@ -13,7 +14,7 @@ body{
 
 .container{
 	/*background: #000;*/
-	background: #0F0F0F;
+	background: rgba(214,215,217,0.5);
 }
 
 img{
