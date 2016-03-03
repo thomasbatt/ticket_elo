@@ -5,6 +5,7 @@
 // var_dump($_POST);
 // exit;
 
+
 // SESSION
 session_start();
 /* ##PASCAL ~> Pour afficher la liste des fichiers contenant un commentaire, entrez la ligne de commande suivante dans votre terminal : grep -R "##PASCAL" | awk -F ":" '{print $1}' | uniq */
@@ -39,7 +40,8 @@ if (isset($_GET['page']))
 // SECURISATION DE LA VARIABLE ACTION -> $action
 /* ##PASCAL ~> La gestion des actions doit s'effectuer directement dans le fichier qui correspond (le fichier de traitement à priori) et pas dans l'index */
 $action = "";
-$access_action = [ 'edit_user' , 'creat_ticket', 'next_ticket' , 'valid_ticket' , 'delete_ticket' , 'login', 'logout', 'register'];
+$access_action = [ 'edit_user' , 'creat_ticket', 'next_ticket', 'valid_ticket' , 'edit_ticket' , 'delete_ticket' , 'login', 'logout', 'register', 'delete_user'];
+
 
 if (isset($_POST['action']))
 {
@@ -64,7 +66,8 @@ $traitements_action = [
 	'delete_ticket'=>'ticket',
 	'login'=>'user',
 	'logout'=>'user',
-	'register'=>'user'
+	'register'=>'user',
+	'delete_user'=>'user'
 
 
 ];

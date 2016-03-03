@@ -115,7 +115,7 @@ if (isset($_POST['action']))
 								$_SESSION['id'] = mysqli_insert_id($db);
 								$_SESSION['login'] = $login;
 								$_SESSION['role'] = 'user';
-								/* ##PASCAL ~> Et la mise a jour de $_SESSION['avatar'] ? */
+								$_SESSION['avatar'] = $avatar;
 								header('Location: index.php');
 								exit;
 					}
@@ -146,7 +146,6 @@ if (isset($_POST['action']))
 			$first_name = $_POST['first_name'];
 			$last_name = $_POST['last_name'];
 			$avatar = $_FILES['avatar'];
-
 			// Etape 3
 			// if (strlen($login) < 3)
 			// 	$error = "Login trop court (< 3)";
@@ -154,37 +153,41 @@ if (isset($_POST['action']))
 			// 	$error = "Login trop long (> 31)";
 			// else
 			/* ##PASCAL ~> Attention ici a l'écriture du fichier, ça part en sucette avec les accolades :/ */
-			{
 				// Etape 4
 
 				//VERIFICATION DE L'IMAGE -------------------------------------------------------------------------J.O.-------------------------------
-	
+			if ($avatar['error'] != 4)
+			{
 				$extensions_valides = array( 'jpg' , 'jpeg' , 'gif' , 'png' );
 				$extension_upload = strtolower(  substr(  strrchr($_FILES['avatar']['name'], '.')  ,1)  );
 				
 				if ( in_array($extension_upload,$extensions_valides) ) 
-					echo "Extension correcte";
-				$name = md5(uniqid(rand(), true)).'.'.$extension_upload;
-				$avatar = move_uploaded_file($_FILES['avatar']['tmp_name'], 'public/avatar/'.$name);
-				if ($avatar)
+				
 				{
-
-				$query = "UPDATE ticket_users SET email='".$email."', phone='".$phone."', first_name='".$first_name."', last_name='".$last_name."', avatar='".$name."' WHERE id='".$_SESSION['id']."'";
+					echo "Extension correcte";
+					$name = md5(uniqid(rand(), true)).'.'.$extension_upload;
+					$avatar = move_uploaded_file($_FILES['avatar']['tmp_name'], 'public/avatar/'.$name);
+					$update = ", avatar='".$name."'";
+				}
+			}
+			else
+				$update = '';
+			$query = "UPDATE ticket_users SET email='".$email."', phone='".$phone."', first_name='".$first_name."', last_name='".$last_name."'".$update." WHERE id='".$_SESSION['id']."'";
+			
 
 				//--------------------------------------------------------------------------------------------------J.O.-------------------------------
 
 
 				$res = mysqli_query($db, $query);
-				if ($res)
-				{
-					// Etape 5
-					header('Location: account');
-					exit;
-				}
-				else
-					$error = "Erreur interne au serveur";
-			}
-		}
+					if ($res)
+					{
+						// Etape 5
+						header('Location: account');
+						exit;
+					}
+					else
+						$error = "Erreur interne au serveur";
+				
 		}
 	}
 
@@ -245,6 +248,36 @@ if (isset($_POST['action']))
 			
 		}
 	}
+	
+	else if ($action == 'delete_user'){
+		// var_dump("coucou2");
+		// var_dump("coucou2");
+		// var_dump("coucou2");
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	}
+
+
+
+
+
 	else if ($action == 'logout'){
 		session_destroy();
 		$_SESSION = array();
