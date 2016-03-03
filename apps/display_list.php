@@ -1,6 +1,7 @@
 <?php
 
 $statut = mysqli_real_escape_string($db, $statut);
+/* ##PASCAL ~> Requete oksauf que as est un mot clef, c'est mieux si vous l'écrivez en majuscules > AS */
 $query = "SELECT 
 			ticket_tickets.id as ticket_id, title, ticket_tickets.statut as ticket_statut, content, ticket_tickets.date as ticket_date, dead_line, img as url_img, treatment_id, 
 			ticket_users.id as user_id, ticket_users.avatar as url_avatar, ticket_users.first_name, ticket_users.last_name, ticket_users.login, ticket_users.phone, ticket_users.statut as user_statut
@@ -29,7 +30,7 @@ while ($ticket_user = mysqli_fetch_assoc($res_user))
 	$login = $ticket_user['login'];
 	$phone = $ticket_user['phone'];
 	$user_statut = $ticket_user['user_statut'];
-
+	/* ##PASCAL ~> Pareil ici pas besoin de faire 15 variables... c'est un peu crade, faites une variable $user et une variable $ticket, c'est plus propre ! */
 	// var_dump($ticket_user);
 	require('views/ticket.phtml');
 }

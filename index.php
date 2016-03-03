@@ -8,7 +8,8 @@
 
 // SESSION
 session_start();
-
+/* ##PASCAL ~> Pour afficher la liste des fichiers contenant un commentaire, entrez la ligne de commande suivante dans votre terminal : grep -R "##PASCAL" | awk -F ":" '{print $1}' | uniq */
+/* ##PASCAL ~> Dans l'idéal les informations de connexion à la db se trouvent dans un fichier dédié, genre config.php qui est ensuite require */
 // DATABASE
 // $domaine = 'localhost';
 $domaine = '192.168.1.8';
@@ -29,12 +30,14 @@ if (isset($_GET['page']))
 		$page = $_GET['page'];
 	else
 	{
+		/* ##PASCAL ~> Pas besoin d'indiquer index.php, il faudrait plutôt mettre juste : tickets (la page par défaut) */
 		header('Location: index.php');
 		exit;
 	}
 }
 
 // SECURISATION DE LA VARIABLE ACTION -> $action
+/* ##PASCAL ~> La gestion des actions doit s'effectuer directement dans le fichier qui correspond (le fichier de traitement à priori) et pas dans l'index */
 $action = "";
 $access_action = [ 'edit_user' , 'creat_ticket', 'valid_ticket' , 'edit_ticket' , 'delete_ticket' , 'login', 'logout', 'register'];
 
@@ -65,6 +68,7 @@ $traitements_action = [
 
 
 ];
+/* ##PASCAL ~> Vous avez 3 if qui se suivent pour traiter la même chose et sans else, attention il pourrait y avoir des comportements imprévus */
 if ( isset($traitements_page[$page]) )
 	$traitement = $traitements_page[$page];
 

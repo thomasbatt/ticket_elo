@@ -1,6 +1,6 @@
 <?php
 
-
+/* ##PASCAL ~> Ce code est inutile, il faudrait plutot tester a chaque fois la valeur dans la session */
 if ( !empty($_SESSION) )
 {
     $session_id = $_SESSION['id'];
@@ -17,7 +17,7 @@ else{
 }
 
 $lt=setlocale (LC_TIME, 'fr_FR.utf8','fra'); 
-
+/* ##PASCAL ~> Mettre la fonction week2str dans un autre fichier "tools.php" par exemple */
 function week2str($annee, $no_semaine){
     // Récup jour début et fin de la semaine
     $timeStart = strtotime("First Monday January {$annee} + ".($no_semaine - 1)." Week");

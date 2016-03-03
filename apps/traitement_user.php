@@ -7,6 +7,7 @@
 // Etape 1
 if (isset($_POST['action']))
 {
+	/* ##PASCAL ~> Pareil, deuxieme verif de action, inutile dans l'index */
 	$action = $_POST['action'];
 	if ($action == 'login')
 	{
@@ -40,6 +41,7 @@ if (isset($_POST['action']))
 							$_SESSION['login'] = $user['login'];
 							$_SESSION['role'] = $user['role'];
 							$_SESSION['avatar'] = $user['avatar'];
+							/* ##PASCAL ~> pareil, tickets plutot que index.php, sinon nickel */
 							header('Location: index.php');
 							exit;
 						}
@@ -77,6 +79,7 @@ if (isset($_POST['action']))
 				$error = "Login trop long (> 31)";
 			else if (strlen($password1) < 6)
 				$error = "Password trop court (< 6)";
+			/* ##PASCAL ~> Pas de vérification d'email de phone de first_name ou de last_name ? */
 			else if ($password1 !== $password2)
 				$error = "Les mots de passe ne correspondent pas";
 			else
@@ -84,6 +87,7 @@ if (isset($_POST['action']))
 				$password = $password1;
 				// Etape 4
 				$login = mysqli_real_escape_string($db, $login);
+				/* ##PASCAL ~> Pas de protection pour phone, email, first_name, last_name, attention a la securite ! */
 				$password = password_hash($password, PASSWORD_BCRYPT, ['cost'=>12]);
 				$password = mysqli_real_escape_string($db, $password);
 				//VERIFICATION DE L'IMAGE -------------------------------------------------------------------------J.O.-------------------------------
@@ -91,6 +95,7 @@ if (isset($_POST['action']))
 				$extensions_valides = array( 'jpg' , 'jpeg' , 'gif' , 'png' );
 				$extension_upload = strtolower(  substr(  strrchr($_FILES['avatar']['name'], '.')  ,1)  );
 				
+				/* ##PASCAL ~> Attention au if ici (je sais que c'est corrigé dans la version de JO mais quand meme) en gros on affiche un message si l'extension est correcte... mais si elle ne l'est pas on fait l'upload quand meme */
 				if ( in_array($extension_upload,$extensions_valides) ) 
 					echo "Extension correcte";
 				$name = md5(uniqid(rand(), true)).'.'.$extension_upload;
@@ -110,6 +115,7 @@ if (isset($_POST['action']))
 								$_SESSION['id'] = mysqli_insert_id($db);
 								$_SESSION['login'] = $login;
 								$_SESSION['role'] = 'user';
+								/* ##PASCAL ~> Et la mise a jour de $_SESSION['avatar'] ? */
 								header('Location: index.php');
 								exit;
 					}
@@ -120,7 +126,7 @@ if (isset($_POST['action']))
 
 
 
-
+/* ##PASCAL ~> Du vide ! */
 
 
 
@@ -147,6 +153,7 @@ if (isset($_POST['action']))
 			// else if (strlen($login) > 31)
 			// 	$error = "Login trop long (> 31)";
 			// else
+			/* ##PASCAL ~> Attention ici a l'écriture du fichier, ça part en sucette avec les accolades :/ */
 			{
 				// Etape 4
 
@@ -225,6 +232,7 @@ if (isset($_POST['action']))
 				if ($res)
 				{
 					// Etape 5
+					/* ##PASCAL ~> Redirection tickets plutot que index.php */
 					header('Location: index.php');
 					exit;
 				}
@@ -240,6 +248,7 @@ if (isset($_POST['action']))
 	else if ($action == 'logout'){
 		session_destroy();
 		$_SESSION = array();
+		/* ##PASCAL ~> Pareil, mais sinon ok */
 		header('Location: index.php');
 		exit;
 	}
