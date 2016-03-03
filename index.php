@@ -9,6 +9,7 @@
 // SESSION
 session_start();
 /* ##PASCAL ~> Pour afficher la liste des fichiers contenant un commentaire, entrez la ligne de commande suivante dans votre terminal : grep -R "##PASCAL" | awk -F ":" '{print $1}' | uniq */
+/* ##PASCAL ~> Dans vos phtml vous avez oubliez des htmlentities : grep "\\$" views/* | grep -v htmlentities | grep "\\$" */
 /* ##PASCAL ~> Dans l'idéal les informations de connexion à la db se trouvent dans un fichier dédié, genre config.php qui est ensuite require */
 // DATABASE
 // $domaine = 'localhost';
