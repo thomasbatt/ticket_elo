@@ -42,6 +42,7 @@ if (isset($_GET['page']))
 $action = "";
 $access_action = [ 'edit_user' , 'creat_ticket', 'next_ticket', 'valid_ticket' , 'edit_ticket' , 'delete_ticket' , 'login', 'logout', 'register', 'delete_user'];
 
+
 if (isset($_POST['action']))
 {
 	if (in_array($_POST['action'], $access_action))
@@ -61,7 +62,7 @@ $traitements_page = [
 $traitements_action = [
 	'creat_ticket'=>'ticket',
 	'next_ticket'=>'ticket',
-	'edit_ticket'=>'ticket',
+	'valid_ticket'=>'ticket',
 	'delete_ticket'=>'ticket',
 	'login'=>'user',
 	'logout'=>'user',
