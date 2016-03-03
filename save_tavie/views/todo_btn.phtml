@@ -1,0 +1,17 @@
+<div class="col-xs-5 chkbox">
+	<form method="POST" action="index.php?page=tickets&traitement=traitement_ticket" class="ticketform">
+		<input type="hidden" name="count" value="<?=$count?>">
+		<input type="hidden" name="status" value="<?=$status?>">
+		<div class="btn-group btn-group-vertical" role="group">
+			<div class="btn-group" role="group">
+				<button type="submit" class="btn-xs btn btn-success glyphicon glyphicon-arrow-right" value="current" name="action"></button>
+			</div>
+			<div class="btn-group" role="group">
+				<button type="submit" class="btn-xs btn btn-primary glyphicon glyphicon-pencil" value="edit" name="action"></button>
+			</div>
+			<div class="btn-group" role="group">
+				<button type="submit" class="btn-xs btn btn-danger glyphicon glyphicon-trash" value="delete" name="action"></button>
+			</div>
+		</div>
+	</form>
+</div>
