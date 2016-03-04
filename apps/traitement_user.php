@@ -2,7 +2,7 @@
  // DEBUG
 // var_dump('coucou');
 // var_dump('coucou');
-// var_dump($_GET);
+// var_dump($_POST);
 // exit;
 // Etape 1
 if (isset($_POST['action']))
@@ -100,28 +100,31 @@ if (isset($_POST['action']))
 					echo "Extension correcte";
 				$name = md5(uniqid(rand(), true)).'.'.$extension_upload;
 				$avatar = move_uploaded_file($_FILES['avatar']['tmp_name'], 'public/avatar/'.$name);
-				if ($avatar)
-				{
+				// if ($avatar)
+				// {
 					$query = "INSERT INTO ticket_users (login, password, email, phone, first_name, last_name, avatar) VALUES('".$login."', '".$password."', '".$email."', '".$phone."', '".$first_name."', '".$last_name."', '".$name."')";
 					//--------------------------------------------------------------------------------------------------J.O.-------------------------------
 					$res = mysqli_query($db, $query);
-					// var_dump(mysqli_error($db));
+					// var_dump($res);
 					// exit;
 					if ($res)
 					{
 						// Etape 5
 
+								// var_dump('coucou_register');
 						// Etape 5
 								$_SESSION['id'] = mysqli_insert_id($db);
 								$_SESSION['login'] = $login;
 								$_SESSION['role'] = 'user';
+								$_SESSION['avatar'] = $avatar;
+
 								/* ##PASCAL ~> Et la mise a jour de $_SESSION['avatar'] ? */
-								header('Location: index.php');
-								exit;
+								// header('Location: index.php');
+								// exit;
 					}
 					else
 						$error = "Erreur interne au serveur";
-				}
+				// }
 
 
 
