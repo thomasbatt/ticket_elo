@@ -1,0 +1,8 @@
+# https://fr.wikipedia.org/wiki/.htaccess
+RewriteEngine on
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule (.*) index.php?page=$1 [L,QSA]
+
+# /toto => index.php?page=toto
+# (.+) => expression régulière => regexp => https://regex101.com/

@@ -1,0 +1,11 @@
+<div class="panel panel-warning">
+	<div class="panel-heading">
+		<form method="post">
+		<button type="submit" class="addtickett btn glyphicon glyphicon-plus" name="action" value="creat_ticket"></button> <span class="glyphicon glyphicon-time"></span>
+		<?=htmlentities($list_count)?> tickets à faire
+		</form>
+	</div>
+	<ul class="list-group">
+		<?php require('apps/display_list.php'); ?>
+	</ul>
+</div>

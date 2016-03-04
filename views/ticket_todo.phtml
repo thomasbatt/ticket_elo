@@ -1,0 +1,15 @@
+<form method="POST" action="" class="ticketform">
+	<input type="hidden" name="ticket_id" value="<?=htmlentities($ticket_id)?>" ></input>
+	<input type="hidden" name="statut" value="<?=htmlentities($ticket_statut)?>" ></input>
+	<div class="btn-group btn-group-vertical" role="group">
+		<div class="btn-group" role="group">
+			<button type="submit" class="glyphicon glyphicon-chevron-right" value="next_ticket" name="action"></button>
+		</div>
+		<div class="btn-group" role="group">
+			<button type="submit" class="glyphicon glyphicon-pencil" value="edit_ticket" name="action"></button>
+		</div>
+		<div class="btn-group" role="group">
+			<button type="submit" class="glyphicon glyphicon-remove" value="delete_ticket" name="action"></button>
+		</div>
+	</div>
+</form>
