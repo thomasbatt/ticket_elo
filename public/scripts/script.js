@@ -16,3 +16,19 @@ $('document').ready(function()
 	// 	$('.panelticket').toggleClass('hidden');
 	// });
 });
+
+// script jqueryUI sortable
+$(function() {
+    $("#coltodo, #colcurrent").sortable({
+      connectWith: "#colcurrent",
+      stop:function(event, ui)
+      {
+      	var id = $(ui.item).find('[name="ticket_id"]').val();
+      	var statut = $(ui.item).find('[name="statut"]').val();
+      	$.post('index.php', {ticket_id:id,statut:statut,action:'next_ticket'}, function()
+  		{
+  			
+  		});
+      }
+    }).disableSelection();
+  });

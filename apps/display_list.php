@@ -1,10 +1,9 @@
 <?php
 
 $statut = mysqli_real_escape_string($db, $statut);
-/* ##PASCAL ~> Requete oksauf que as est un mot clef, c'est mieux si vous l'écrivez en majuscules > AS */
 $query = "SELECT 
-			ticket_tickets.id as ticket_id, title, ticket_tickets.statut as ticket_statut, content, ticket_tickets.date as ticket_date, dead_line, img as url_img, treatment_id, ticket_tickets.editing,
-			ticket_users.id as user_id, ticket_users.avatar as url_avatar, ticket_users.first_name, ticket_users.last_name, ticket_users.login, ticket_users.phone, ticket_users.statut as user_statut
+			ticket_tickets.id AS ticket_id, title, ticket_tickets.statut AS ticket_statut, content, ticket_tickets.date AS ticket_date, dead_line, img AS url_img, treatment_id, ticket_tickets.editing,
+			ticket_users.id AS user_id, ticket_users.avatar AS url_avatar, ticket_users.first_name, ticket_users.last_name, ticket_users.login, ticket_users.phone, ticket_users.statut AS user_statut
 			FROM ticket_tickets 
 			LEFT JOIN ticket_users ON ticket_tickets.user_id = ticket_users.id 
 			WHERE ticket_tickets.statut = '".$statut."'  
@@ -14,6 +13,19 @@ $res_user = mysqli_query($db, $query);
 
 while ($ticket_user = mysqli_fetch_assoc($res_user))
 {
+	$tiket = [
+		'id' => $ticket_user['ticket_id'],
+		'title' => $ticket_user['title'],
+		'ticket_statut' => $ticket_user['ticket_statut'],
+		'content' => $ticket_user['content'],
+		'ticket_date' => $ticket_user['ticket_date'],
+		'dead_line' => $ticket_user['dead_line'],
+		'url_img' => $ticket_user['url_img'],
+		'treatment_id' => $ticket_user['treatment_id'],
+		'editing' => $ticket_user['editing']
+	];
+
+
 	$ticket_id = $ticket_user['ticket_id'];
 	$title = $ticket_user['title'];
 	$ticket_statut = $ticket_user['ticket_statut'];
