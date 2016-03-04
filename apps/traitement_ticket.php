@@ -14,8 +14,8 @@ if (isset($_POST['action']))
 	{
 		if (isset($_SESSION['id']))
 		{
-			$title = 'Mon titre';
-			$content = 'Mon contenu';
+			$title = '';
+			$content = '';
 			$user_id = $_SESSION['id'];
 			$statut = 'todo';
 			$img = '';
@@ -40,33 +40,35 @@ if (isset($_POST['action']))
 
 	else if ($action == 'valid_ticket')
 	{
-		if ( isset( $_POST['ticket_id'],$_POST['title'],$_POST['content'] ) )
+		if ( isset( $_POST['ticket_id'],$_POST['title'],$_POST['content'], $_POST['img']) )
 		{
 			if (isset($_SESSION['id']))
 			{
 				$ticket_id = $_POST['ticket_id'];
 				$title = $_POST['title'];
 				$content = $_POST['content'];
+				$img = $_POST['img'];
 		
 				if (strlen($ticket_id) < 1)
 					$error = "ticket_id trop court (< 2)";
-				else if (strlen($ticket_id) > 31)
+				else if (strlen($ticket_id) > 2047)
 					$error = "ticket_id trop long (> 2047)";
 				else if (strlen($title) < 1)
 					$error = "title trop court (< 2)";
-				else if (strlen($title) > 31)
+				else if (strlen($title) > 2047)
 					$error = "title trop long (> 2047)";
 				else if (strlen($content) < 1)
 					$error = "content trop court (< 2)";
-				else if (strlen($content) > 31)
+				else if (strlen($content) > 2047)
 					$error = "content trop long (> 2047)";
 				else
 				{
 					$ticket_id = mysqli_real_escape_string($db, $ticket_id);
 					$title = mysqli_real_escape_string($db, $title);
 					$content = mysqli_real_escape_string($db, $content);
+					$img = mysqli_real_escape_string($db, $img);
 					$query = "UPDATE ticket_tickets
-								SET title = '".$title."',content = '".$content."',editing = '0'
+								SET title = '".$title."',content = '".$content."',editing = '0', img = '".$img."'
 								WHERE id = '".$ticket_id."' ";
 					$res = mysqli_query($db, $query);
 					
@@ -98,11 +100,11 @@ if (isset($_POST['action']))
 		
 				if (strlen($ticket_id) < 1)
 					$error = "ticket_id trop court (< 2)";
-				else if (strlen($ticket_id) > 31)
+				else if (strlen($ticket_id) > 2047)
 					$error = "ticket_id trop long (> 2047)";
 				else if (strlen($ticket_statut) < 1)
 					$error = "ticket_statut trop court (< 2)";
-				else if (strlen($ticket_statut) > 31)
+				else if (strlen($ticket_statut) > 2047)
 					$error = "ticket_statut trop long (> 2047)";
 				else
 				{
@@ -148,7 +150,7 @@ if (isset($_POST['action']))
 		
 				if (strlen($ticket_id) < 1)
 					$error = "ticket_id trop court (< 2)";
-				else if (strlen($ticket_id) > 31)
+				else if (strlen($ticket_id) > 2047)
 					$error = "ticket_id trop long (> 2047)";
 				else
 				{
@@ -184,7 +186,7 @@ if (isset($_POST['action']))
 			
 					if (strlen($ticket_id) < 1)
 						$error = "ticket_id trop court (< 2)";
-					else if (strlen($ticket_id) > 31)
+					else if (strlen($ticket_id) > 2047)
 						$error = "ticket_id trop long (> 2047)";
 					else
 					{

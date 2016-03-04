@@ -13,9 +13,9 @@
                     </a> -->
             </div>
             <div class="media-body">
-                <input type="text" name="title" value="<?=htmlentities($title)?>">
-                <input type="text" name="content" value="<?=htmlentities($content)?>">
-                <input type="URL" name="img" value="<?=htmlentities($url_img)?>">
+                <input type="text" name="title" placeholder="Mon titre" value="<?=htmlentities($ticket['title'])?>">
+                <input type="text" name="content" placeholder="Mon contenu" value="<?=htmlentities($ticket['content'])?>">
+                <input type="URL" name="img" placeholder="URL de mon image" value="<?=htmlentities($ticket['url_img'])?>">
             </div>
             <div class="ticketform">
                 <input type="hidden" name="ticket_id" value="<?=htmlentities($ticket_id)?>">

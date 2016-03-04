@@ -13,7 +13,7 @@ $res_user = mysqli_query($db, $query);
 
 while ($ticket_user = mysqli_fetch_assoc($res_user))
 {
-	$tiket = [
+	$ticket = [
 		'id' => $ticket_user['ticket_id'],
 		'title' => $ticket_user['title'],
 		'ticket_statut' => $ticket_user['ticket_statut'],

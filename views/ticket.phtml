@@ -5,12 +5,12 @@
 		<div>
 			<?=htmlentities($login)?>
 		</div>
-			<center>
 				<?=htmlentities($ticket_id)?>
+		</div>
+		<div class="media-body">
 				<a target="_blank" href="index.php" alt="img">
-					<img class="media-object" src="url_img" alt="image" style="max-height:64px;max-width:64px;">
+					<img class="media-object" src="<?=$ticket['url_img']?>" alt="image" style="max-height:64px;max-width:64px;">
 				</a>
-			</center>
 		</div>
 		<div class="media-body">
 			<h4 class="media-heading"><?=htmlentities($title)?></h4>

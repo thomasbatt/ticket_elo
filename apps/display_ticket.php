@@ -16,6 +16,17 @@ if (isset($_GET['id']))
 	$editing = true;
 	while ($ticket_user = mysqli_fetch_assoc($res_user))
 	{
+		$ticket = [
+			'id' => $ticket_user['ticket_id'],
+			'title' => $ticket_user['title'],
+			'ticket_statut' => $ticket_user['ticket_statut'],
+			'content' => $ticket_user['content'],
+			'ticket_date' => $ticket_user['ticket_date'],
+			'dead_line' => $ticket_user['dead_line'],
+			'url_img' => $ticket_user['url_img'],
+			'treatment_id' => $ticket_user['treatment_id'],
+			'editing' => $ticket_user['editing']
+		];
 		$ticket_id = $ticket_user['ticket_id'];
 		$title = $ticket_user['title'];
 		$ticket_statut = $ticket_user['ticket_statut'];
