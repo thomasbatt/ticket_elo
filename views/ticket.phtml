@@ -2,6 +2,9 @@
 <li class="list-group-item ticket">
 	<div class="media">
 		<div class="media-left">
+		<div>
+			<?=htmlentities($login)?>
+		</div>
 			<center>
 				<?=htmlentities($ticket_id)?>
 				<a target="_blank" href="index.php" alt="img">
@@ -13,10 +16,6 @@
 			<h4 class="media-heading"><?=htmlentities($title)?></h4>
 			<div style="word-wrap: break-word;max-width:230px;"><?=htmlentities($content)?></div>
 		</div>
-		<div>
-			<?=htmlentities($login)?>
-		</div>
 	</div>
 	<?php require('apps/ticket_status.php'); ?>
 </li>
-

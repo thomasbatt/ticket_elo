@@ -2,20 +2,20 @@
     <div class="media">
         <form method="POST">
             <div class="media-left">
+            <div>
+                <?=htmlentities($login)?>
+            </div>
                 <center>
                     <?=htmlentities($ticket_id)?>
-                    <!-- <input type="URL" name="img" placeholder="URL de mon image"> -->
-                    <a target="_blank" href="index.php" alt="img">
-                        <img class="media-object" src="url_img" alt="image" style="max-height:64px;max-width:64px;">
-                    </a>
                 </center>
+                 <!--    <a target="_blank" href="index.php" alt="img">
+                        <img class="media-object" src="url_img" alt="image" style="max-height:64px;max-width:64px;">
+                    </a> -->
             </div>
             <div class="media-body">
                 <input type="text" name="title" value="<?=htmlentities($title)?>">
                 <input type="text" name="content" value="<?=htmlentities($content)?>">
-            </div>
-            <div>
-                <?=htmlentities($login)?>
+                <input type="URL" name="img" value="<?=htmlentities($url_img)?>">
             </div>
             <div class="ticketform">
                 <input type="hidden" name="ticket_id" value="<?=htmlentities($ticket_id)?>">
