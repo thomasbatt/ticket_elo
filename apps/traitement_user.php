@@ -91,15 +91,19 @@ if (isset($_POST['action']))
 				$password = password_hash($password, PASSWORD_BCRYPT, ['cost'=>12]);
 				$password = mysqli_real_escape_string($db, $password);
 				//VERIFICATION DE L'IMAGE -------------------------------------------------------------------------J.O.-------------------------------
-	
-				$extensions_valides = array( 'jpg' , 'jpeg' , 'gif' , 'png' );
-				$extension_upload = strtolower(  substr(  strrchr($_FILES['avatar']['name'], '.')  ,1)  );
-				
-				/* ##PASCAL ~> Attention au if ici (je sais que c'est corrigé dans la version de JO mais quand meme) en gros on affiche un message si l'extension est correcte... mais si elle ne l'est pas on fait l'upload quand meme */
-				if ( in_array($extension_upload,$extensions_valides) ) 
-					echo "Extension correcte";
-				$name = md5(uniqid(rand(), true)).'.'.$extension_upload;
-				$avatar = move_uploaded_file($_FILES['avatar']['tmp_name'], 'public/avatar/'.$name);
+				if (isset($_FILES['avatar']['error']) && $_FILES['avatar']['error'] != 4)
+				{
+					$extensions_valides = array( 'jpg' , 'jpeg' , 'gif' , 'png' );
+					$extension_upload = strtolower(  substr(  strrchr($_FILES['avatar']['name'], '.')  ,1)  );
+					
+					/* ##PASCAL ~> Attention au if ici (je sais que c'est corrigé dans la version de JO mais quand meme) en gros on affiche un message si l'extension est correcte... mais si elle ne l'est pas on fait l'upload quand meme */
+					if ( in_array($extension_upload,$extensions_valides) ) 
+						echo "Extension correcte";
+					$name = md5(uniqid(rand(), true)).'.'.$extension_upload;
+					$avatar = move_uploaded_file($_FILES['avatar']['tmp_name'], 'public/avatar/'.$name);
+				}
+				else
+					$name = "avatar_par_defaut.jpg";
 				// if ($avatar)
 				// {
 					$query = "INSERT INTO ticket_users (login, password, email, phone, first_name, last_name, avatar) VALUES('".$login."', '".$password."', '".$email."', '".$phone."', '".$first_name."', '".$last_name."', '".$name."')";
@@ -116,7 +120,7 @@ if (isset($_POST['action']))
 								$_SESSION['id'] = mysqli_insert_id($db);
 								$_SESSION['login'] = $login;
 								$_SESSION['role'] = 'user';
-								$_SESSION['avatar'] = $avatar;
+								$_SESSION['avatar'] = $name;
 
 								/* ##PASCAL ~> Et la mise a jour de $_SESSION['avatar'] ? */
 								// header('Location: index.php');
