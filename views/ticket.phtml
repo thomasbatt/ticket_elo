@@ -3,18 +3,18 @@
 	<div class="media">
 		<div class="media-left">
 			<center>
-				<?=htmlentities($ticket_id)?>
+				<?=htmlentities($ticket['id'])?>
 				<a target="_blank" href="index.php" alt="img">
 					<img class="media-object" src="url_img" alt="image" style="max-height:64px;max-width:64px;">
 				</a>
 			</center>
 		</div>
 		<div class="media-body">
-			<h4 class="media-heading"><?=htmlentities($title)?></h4>
-			<div style="word-wrap: break-word;max-width:230px;"><?=htmlentities($content)?></div>
+			<h4 class="media-heading"><?=htmlentities($ticket['title'])?></h4>
+			<div style="word-wrap: break-word;max-width:230px;"><?=htmlentities($ticket['content'])?></div>
 		</div>
 		<div>
-			<?=htmlentities($login)?>
+			<?=htmlentities($user['login'])?>
 		</div>
 	</div>
 	<?php require('apps/ticket_status.php'); ?>

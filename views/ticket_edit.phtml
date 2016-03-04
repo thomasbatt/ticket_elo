@@ -3,7 +3,7 @@
         <form method="POST">
             <div class="media-left">
                 <center>
-                    <?=htmlentities($ticket_id)?>
+                    <?=htmlentities($ticket['id'])?>
                     <!-- <input type="URL" name="img" placeholder="URL de mon image"> -->
                     <a target="_blank" href="index.php" alt="img">
                         <img class="media-object" src="url_img" alt="image" style="max-height:64px;max-width:64px;">
@@ -11,14 +11,14 @@
                 </center>
             </div>
             <div class="media-body">
-                <input type="text" name="title" value="<?=htmlentities($title)?>">
-                <input type="text" name="content" value="<?=htmlentities($content)?>">
+                <input type="text" name="title" value="<?=htmlentities($ticket['title'])?>">
+                <input type="text" name="content" value="<?=htmlentities($ticket['content'])?>">
             </div>
             <div>
-                <?=htmlentities($login)?>
+                <?=htmlentities($user['login'])?>
             </div>
             <div class="ticketform">
-                <input type="hidden" name="ticket_id" value="<?=htmlentities($ticket_id)?>">
+                <input type="hidden" name="ticket_id" value="<?=htmlentities($ticket['id'])?>">
                 <button type="submit" class="glyphicon glyphicon-ok" value="valid_ticket" name="action"></button>
             </div>
         </form>
