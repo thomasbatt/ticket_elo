@@ -17,7 +17,9 @@ body {
   /*background-color: #f5f5f5;*/
 }
 
-
+footer b{
+  color: #FF9906;
+}
 /* Custom page CSS
 -------------------------------------------------- */
 /* Not required for template or sticky footer method. */
@@ -40,7 +42,7 @@ code {
 
 .list-group
 {
-  max-height:680px;
+ /* max-height:680px;*/
   overflow-y:auto;
 }
 .panel-heading

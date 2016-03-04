@@ -2,20 +2,22 @@
 <li class="list-group-item ticket">
 	<div class="media">
 		<div class="media-left">
-		<div>
-			<?=htmlentities($login)?>
-		</div>
-				<?=htmlentities($ticket_id)?>
-		</div>
-		<div class="media-body">
-				<a target="_blank" href="index.php" alt="img">
-					<img class="media-object" src="<?=$ticket['url_img']?>" alt="image" style="max-height:64px;max-width:64px;">
+			<center>
+				<a target="_blank" alt="img">
+					<img class="media-object" src="public/images/<?=$ticket['url_img']?>" alt="image" style="max-height:80px;max-width:80px;">
 				</a>
+					<?=htmlentities($user['login'])?>
+					<?=htmlentities($ticket['id'])?>
 		</div>
-		<div class="media-body">
-			<h4 class="media-heading"><?=htmlentities($title)?></h4>
-			<div style="word-wrap: break-word;max-width:230px;"><?=htmlentities($content)?></div>
+		<div class="media-left">
+		
+				<h4 class="media-heading"><?=htmlentities($ticket['title'])?></h4>
+				<div style="word-wrap: break-word;max-width:230px;"><?=htmlentities($ticket['content'])?></div>
+			
+		</div>
+			</center>	
+		<div class="media-right">
+			<?php require('apps/ticket_status.php'); ?>
 		</div>
 	</div>
-	<?php require('apps/ticket_status.php'); ?>
 </li>

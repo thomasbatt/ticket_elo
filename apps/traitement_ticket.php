@@ -18,13 +18,15 @@ if (isset($_POST['action']))
 			$content = '';
 			$user_id = $_SESSION['id'];
 			$statut = 'todo';
-			$img = '';
+			$img = $_FILES['img'];
 			$treatment_id = $user_id;
 
 			$query = "INSERT INTO ticket_tickets (title, content, user_id , statut, img, treatment_id) 
 						VALUES('".$title."', '".$content."', '".$user_id."', '".$statut."', '".$img."', '".$treatment_id."') ";
 			$res = mysqli_query($db, $query);
 			
+
+
 			if ($res === false)
 				$error = "Erreur interne au serveur";
 			else
@@ -40,14 +42,14 @@ if (isset($_POST['action']))
 
 	else if ($action == 'valid_ticket')
 	{
-		if ( isset( $_POST['ticket_id'],$_POST['title'],$_POST['content'], $_POST['img']) )
+		if ( isset( $_POST['ticket_id'],$_POST['title'],$_POST['content'], $_FILES['img']) )
 		{
 			if (isset($_SESSION['id']))
 			{
 				$ticket_id = $_POST['ticket_id'];
 				$title = $_POST['title'];
 				$content = $_POST['content'];
-				$img = $_POST['img'];
+				$img = $_FILES['img'];
 		
 				if (strlen($ticket_id) < 1)
 					$error = "ticket_id trop court (< 2)";
@@ -66,9 +68,20 @@ if (isset($_POST['action']))
 					$ticket_id = mysqli_real_escape_string($db, $ticket_id);
 					$title = mysqli_real_escape_string($db, $title);
 					$content = mysqli_real_escape_string($db, $content);
-					$img = mysqli_real_escape_string($db, $img);
+					
+
+					$extensions_valides = array( 'jpg' , 'jpeg' , 'gif' , 'png' );
+					$extension_upload = strtolower(  substr(  strrchr($_FILES['img']['name'], '.')  ,1)  );
+				
+					if ( in_array($extension_upload,$extensions_valides) ) 
+					
+					$name = md5(uniqid(rand(), true)).'.'.$extension_upload;
+					$img = move_uploaded_file($_FILES['img']['tmp_name'], 'public/images/'.$name);
+					if ($img)
+					{
+
 					$query = "UPDATE ticket_tickets
-								SET title = '".$title."',content = '".$content."',editing = '0', img = '".$img."'
+								SET title = '".$title."',content = '".$content."',editing = '0', img = '".$name."'
 								WHERE id = '".$ticket_id."' ";
 					$res = mysqli_query($db, $query);
 					
@@ -79,8 +92,9 @@ if (isset($_POST['action']))
 						// header('Location: index.php');
 						// exit;
 					}
-				} 
-			}
+					} 
+				}
+			}	
 			else
 				$error = "Vous devez etre connecté";
 		}

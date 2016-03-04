@@ -1,6 +1,5 @@
 <form method="POST" action="" class="ticketform">
-	<input type="hidden" name="ticket_id" value="<?=htmlentities($ticket_id)?>" ></input>
-	<input type="hidden" name="statut" value="<?=htmlentities($ticket_statut)?>" ></input>
-	<input type="hidden" name="status" value="<?=$statut?>">
+	<input type="hidden" name="ticket_id" value="<?=htmlentities($ticket['id'])?>" ></input>
+	<input type="hidden" name="statut" value="<?=htmlentities($ticket['statut'])?>" ></input>
 	<button type="submit" class="glyphicon glyphicon-ok" value="next_ticket" name="action"></button>
 </form>
