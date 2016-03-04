@@ -36,22 +36,6 @@ if (isset($_GET['page']))
 	}
 }
 
-// SECURISATION DE LA VARIABLE ACTION -> $action
-/* ##PASCAL ~> La gestion des actions doit s'effectuer directement dans le fichier qui correspond (le fichier de traitement à priori) et pas dans l'index */
-$action = "";
-$access_action = [ 'edit_user' , 'creat_ticket', 'valid_ticket' , 'next_ticket' , 'edit_ticket' , 'delete_ticket' , 'login', 'logout', 'register'];
-
-if (isset($_POST['action']))
-{
-	if (in_array($_POST['action'], $access_action))
-		$action = $_POST['action'];
-	else
-	{
-		header('Location: index.php');
-		exit;
-	}
-}
-
 // SECURISATION DES FICHIERS DE TRAITEMENTS
 $traitements_page = [
 	'account'=>'user',
@@ -66,8 +50,6 @@ $traitements_action = [
 	'login'=>'user',
 	'logout'=>'user',
 	'register'=>'user'
-
-
 ];
 /* ##PASCAL ~> Vous avez 3 if qui se suivent pour traiter la même chose et sans else, attention il pourrait y avoir des comportements imprévus */
 if ( isset($traitements_page[$page]) )
