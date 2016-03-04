@@ -9,15 +9,26 @@ body{
 	/*background: #0F0F0F;*/
 	/*background: rgba(255, 255, 255, 0.1) ;*/
 	/*background: #000;*/
-	color: #4D4D4D;
+	color: #868686;
 }
 
+h1{
+  color: #FF9906;
+  font-weight: bold;
+}
 
+.modifH3{
+	color: #FF9906;
+	font-weight: bold;
+}
 .container{
 	/*background: #000;*/
 	/*background: #0F0F0F;*/
 }
 
+.stats{
+	color: #fff;
+}
 img{
 	max-width: 100%;
 /*	width: 100px ;
@@ -34,9 +45,14 @@ img{
 
 b {
 	color: #fff;
+	text-transform: capitalize;
+	font-style: italic;
+
 }
 
 /*--------------------------- navbar .................................*/
+
+
 .logo .img-logo{
 	height: 50px;
 }
@@ -53,6 +69,10 @@ b {
 .navbar-brand{
 	background: rgba(0, 0, 0, 0.6);
 }
+.navbar-brand p:hover{
+	color: #FF9906;
+}
+
 .navbar-inverse{
 	background-image: linear-gradient(to bottom,rgba(60, 60, 60, 0.81) 0,RGBA(34, 34, 34, 0.8) 100%);
 	background-color: rgba(34, 34, 34, 0);;
@@ -61,7 +81,9 @@ b {
 	bottom: 0;
 	width: 100%;
 	height: 50px;
+
 }
+
 
 
 /*.navbar-brand a:hover{
@@ -219,6 +241,7 @@ b {
     height: 50px;
   }
 
+
    /*espacement des colonnes */
 
   .col-sm-4.shorter {
@@ -231,3 +254,4 @@ b {
 .panel>.list-group .list-group-item {
     border-radius: 5px;
 }
+

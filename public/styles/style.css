@@ -17,7 +17,9 @@ body {
   /*background-color: #f5f5f5;*/
 }
 
-
+footer b{
+  color: #FF9906;
+}
 /* Custom page CSS
 -------------------------------------------------- */
 /* Not required for template or sticky footer method. */

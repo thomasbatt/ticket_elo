@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse navbar-fixed-top">
+<nav class="navbar navbar-inverse navbar-fixed-top navHover">
   <div class="container-fluid">
   
     <div class="navbar-header">
@@ -9,7 +9,7 @@
         <span class="icon-bar"></span>
       </button>
       <!-- <span class="logo"><a href="index.php"><img src="public/images/bm-logo.jpg" alt="Bistrot Moderne" class="img-logo"></a></span> -->
-      <span><a class="navbar-brand" href="index.php">Tickets Team3</a></span>
+      <span><a class="navbar-brand" href="index.php"><p>Tickets Team3</p></a></span>
     </div>
 
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -22,10 +22,10 @@
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><p class="navbar-text">Bienvenue <b><?=htmlentities($_SESSION['login'])?></b></p></li>
-        <li><img class="avatar-header" src="public/avatar/<?=htmlentities($_SESSION['avatar'])?>"></li>
+        <li><img class="avatar-header" alt="avatar" src="public/avatar/<?=htmlentities($_SESSION['avatar'])?>"></li>
         <li>
           <form method= "post">
-            <button type="submit" class="btn navbar-btn" name="action" value="logout">Se déconnecter</button>
+            <button type="submit" class="btn btn-warning navbar-btn" name="action" value="logout">Se déconnecter</button>
           </form>
         </li>
       </ul>

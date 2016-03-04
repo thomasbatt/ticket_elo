@@ -14,17 +14,19 @@ if (isset($_POST['action']))
 	{
 		if (isset($_SESSION['id']))
 		{
-			$title = 'Mon titre';
-			$content = 'Mon contenu';
+			$title = '';
+			$content = '';
 			$user_id = $_SESSION['id'];
 			$statut = 'todo';
-			$img = '';
+			$img = $_FILES['img'];
 			$treatment_id = $user_id;
 
 			$query = "INSERT INTO ticket_tickets (title, content, user_id , statut, img, treatment_id) 
 						VALUES('".$title."', '".$content."', '".$user_id."', '".$statut."', '".$img."', '".$treatment_id."') ";
 			$res = mysqli_query($db, $query);
 			
+
+
 			if ($res === false)
 				$error = "Erreur interne au serveur";
 			else
@@ -40,33 +42,46 @@ if (isset($_POST['action']))
 
 	else if ($action == 'valid_ticket')
 	{
-		if ( isset( $_POST['ticket_id'],$_POST['title'],$_POST['content'] ) )
+		if ( isset( $_POST['ticket_id'],$_POST['title'],$_POST['content'], $_FILES['img']) )
 		{
 			if (isset($_SESSION['id']))
 			{
 				$ticket_id = $_POST['ticket_id'];
 				$title = $_POST['title'];
 				$content = $_POST['content'];
+				$img = $_FILES['img'];
 		
 				if (strlen($ticket_id) < 1)
 					$error = "ticket_id trop court (< 2)";
-				else if (strlen($ticket_id) > 31)
+				else if (strlen($ticket_id) > 2047)
 					$error = "ticket_id trop long (> 2047)";
 				else if (strlen($title) < 1)
 					$error = "title trop court (< 2)";
-				else if (strlen($title) > 31)
+				else if (strlen($title) > 2047)
 					$error = "title trop long (> 2047)";
 				else if (strlen($content) < 1)
 					$error = "content trop court (< 2)";
-				else if (strlen($content) > 31)
+				else if (strlen($content) > 2047)
 					$error = "content trop long (> 2047)";
 				else
 				{
 					$ticket_id = mysqli_real_escape_string($db, $ticket_id);
 					$title = mysqli_real_escape_string($db, $title);
 					$content = mysqli_real_escape_string($db, $content);
+					
+
+					$extensions_valides = array( 'jpg' , 'jpeg' , 'gif' , 'png' );
+					$extension_upload = strtolower(  substr(  strrchr($_FILES['img']['name'], '.')  ,1)  );
+				
+					if ( in_array($extension_upload,$extensions_valides) ) 
+					
+					$name = md5(uniqid(rand(), true)).'.'.$extension_upload;
+					$img = move_uploaded_file($_FILES['img']['tmp_name'], 'public/images/'.$name);
+					if ($img)
+					{
+
 					$query = "UPDATE ticket_tickets
-								SET title = '".$title."',content = '".$content."',editing = '0'
+								SET title = '".$title."',content = '".$content."',editing = '0', img = '".$name."'
 								WHERE id = '".$ticket_id."' ";
 					$res = mysqli_query($db, $query);
 					
@@ -77,8 +92,9 @@ if (isset($_POST['action']))
 						// header('Location: index.php');
 						// exit;
 					}
-				} 
-			}
+					} 
+				}
+			}	
 			else
 				$error = "Vous devez etre connecté";
 		}
@@ -98,11 +114,11 @@ if (isset($_POST['action']))
 		
 				if (strlen($ticket_id) < 1)
 					$error = "ticket_id trop court (< 2)";
-				else if (strlen($ticket_id) > 31)
+				else if (strlen($ticket_id) > 2047)
 					$error = "ticket_id trop long (> 2047)";
 				else if (strlen($ticket_statut) < 1)
 					$error = "ticket_statut trop court (< 2)";
-				else if (strlen($ticket_statut) > 31)
+				else if (strlen($ticket_statut) > 2047)
 					$error = "ticket_statut trop long (> 2047)";
 				else
 				{
@@ -148,7 +164,7 @@ if (isset($_POST['action']))
 		
 				if (strlen($ticket_id) < 1)
 					$error = "ticket_id trop court (< 2)";
-				else if (strlen($ticket_id) > 31)
+				else if (strlen($ticket_id) > 2047)
 					$error = "ticket_id trop long (> 2047)";
 				else
 				{
@@ -184,7 +200,7 @@ if (isset($_POST['action']))
 			
 					if (strlen($ticket_id) < 1)
 						$error = "ticket_id trop court (< 2)";
-					else if (strlen($ticket_id) > 31)
+					else if (strlen($ticket_id) > 2047)
 						$error = "ticket_id trop long (> 2047)";
 					else
 					{
