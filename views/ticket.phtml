@@ -3,9 +3,6 @@
 	<div class="media">
 		<div class="media-left">
 			<center>
-				<div>
-					<?=htmlentities($login)?>
-				</div>
 				<?=htmlentities($ticket_id)?>
 				<a target="_blank" href="index.php" alt="img">
 					<img class="media-object" src="url_img" alt="image" style="max-height:64px;max-width:64px;">
@@ -15,6 +12,9 @@
 		<div class="media-body">
 			<h4 class="media-heading"><?=htmlentities($title)?></h4>
 			<div style="word-wrap: break-word;max-width:230px;"><?=htmlentities($content)?></div>
+		</div>
+		<div>
+			<?=htmlentities($login)?>
 		</div>
 	</div>
 	<?php require('apps/ticket_status.php'); ?>

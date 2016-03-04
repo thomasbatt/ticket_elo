@@ -1,23 +1,26 @@
 <li class="list-group-item ticket">
-    <form method="POST" action="" >
-        <div class="media">
+    <div class="media">
+        <form method="POST">
             <div class="media-left">
+                <center>
+                    <?=htmlentities($ticket_id)?>
+                    <!-- <input type="URL" name="img" placeholder="URL de mon image"> -->
+                    <a target="_blank" href="index.php" alt="img">
+                        <img class="media-object" src="url_img" alt="image" style="max-height:64px;max-width:64px;">
+                    </a>
+                </center>
             </div>
             <div class="media-body">
-                    <input type="text" name="user_id" value="<?=htmlentities($_SESSION['login'])?>">
-                    <input type="text" name="title" placeholder="Mon titre">
-                <div style="word-wrap: break-word;max-width:230px;">
-                   <input type="text" name="content" placeholder="Mon contenu">
-                </div>
-                 <div style="word-wrap: break-word;max-width:230px;">
-                   <input type="URL" name="img" placeholder="URL de mon image">
-                </div>
+                <input type="text" name="title" value="<?=htmlentities($title)?>">
+                <input type="text" name="content" value="<?=htmlentities($content)?>">
             </div>
-                <div class="media-right">
-                    <input type="hidden" name="status" value="<?=$statut?>">
-                    <button type="submit" class="btn-xs btn btn-success glyphicon glyphicon-ok" value="valid_ticket" name="action"></button>
-                </div>
-        </div>
-    </form>
+            <div>
+                <?=htmlentities($login)?>
+            </div>
+            <div class="ticketform">
+                <input type="hidden" name="ticket_id" value="<?=htmlentities($ticket_id)?>">
+                <button type="submit" class="glyphicon glyphicon-ok" value="valid_ticket" name="action"></button>
+            </div>
+        </form>
+    </div>
 </li>
-

@@ -1,17 +1,23 @@
 -- phpMyAdmin SQL Dump
--- version 4.0.10deb1
+-- version 4.5.5
 -- http://www.phpmyadmin.net
 --
--- Client: localhost
--- Généré le: Mar 01 Mars 2016 à 16:51
--- Version du serveur: 5.5.46-0ubuntu0.14.04.2
--- Version de PHP: 5.5.9-1ubuntu4.14
+-- Client :  localhost
+-- Généré le :  Ven 04 Mars 2016 à 05:12
+-- Version du serveur :  5.6.28-0ubuntu0.15.10.1
+-- Version de PHP :  5.6.11-1ubuntu3.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
 --
--- Base de données: `thomasbazshare`
+-- Base de données :  `thomasbazshare`
 --
 
 -- --------------------------------------------------------
@@ -20,48 +26,36 @@ SET time_zone = "+00:00";
 -- Structure de la table `ticket_tickets`
 --
 
-CREATE TABLE IF NOT EXISTS `ticket_tickets` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE `ticket_tickets` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `position` int(10) UNSIGNED NOT NULL,
   `title` varchar(15) NOT NULL,
   `content` varchar(255) NOT NULL,
-  `user_id` int(11) unsigned NOT NULL,
+  `user_id` int(11) UNSIGNED NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `statut` varchar(15) NOT NULL,
+  `editing` tinyint(1) NOT NULL DEFAULT '1',
   `img` varchar(255) NOT NULL,
-  `treatment_id` int(11) unsigned NOT NULL,
-  `dead_line` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
-  PRIMARY KEY (`id`),
-  KEY `user_id` (`user_id`),
-  KEY `treatment_id` (`treatment_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=41 ;
+  `treatment_id` int(11) UNSIGNED NOT NULL,
+  `dead_line` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Contenu de la table `ticket_tickets`
 --
 
-INSERT INTO `ticket_tickets` (`id`, `title`, `content`, `user_id`, `date`, `statut`, `img`, `treatment_id`, `dead_line`) VALUES
-(5, 'ticket 1', '', 1, '2016-03-01 15:34:17', 'todo', '', 1, '0000-00-00 00:00:00'),
-(6, 'ticket 3', 'ùodhfigmo rmeogh remgju rheg', 1, '2016-03-01 15:34:17', 'current', '', 1, '0000-00-00 00:00:00'),
-(7, 'ticket 4', 'ùodhfigmo rmeogh remgju rheg', 1, '2016-03-01 15:34:17', 'todo', '', 1, '0000-00-00 00:00:00'),
-(8, 'ticket 5', 'ùodhfigmo rmdtyjdt remgju rheg', 1, '2016-03-01 15:34:17', 'current', '', 1, '0000-00-00 00:00:00'),
-(9, 'ticket 6', 'ùodhfigmdtyjdteogh remgju rheg', 1, '2016-03-01 15:34:17', 'todo', '', 1, '0000-00-00 00:00:00'),
-(10, 'ticket 7', 'ùodhfigmdtyjdteogh remgju rheg', 1, '2016-03-01 15:34:17', 'todo', '', 1, '0000-00-00 00:00:00'),
-(11, 'ticket 8', 'ùodhfigdtyjrmeogh remgju rheg', 1, '2016-03-01 15:34:17', 'current', '', 1, '0000-00-00 00:00:00'),
-(12, 'ticket 9', 'ùodhfigmo rmdtyjdt remgju rheg', 1, '2016-03-01 09:50:33', 'done', '', 1, '0000-00-00 00:00:00'),
-(13, 'ticket 10', 'ùodhfigdtyjdtogh remgju rheg', 1, '2016-03-01 09:50:33', 'done', '', 1, '0000-00-00 00:00:00'),
-(19, '', 'kkkkkkkkkkkkk', 4, '2016-03-01 15:34:17', 'todo', '', 1, '0000-00-00 00:00:00'),
-(20, '', 'btgbntygh', 4, '2016-03-01 15:34:17', 'current', '', 1, '0000-00-00 00:00:00'),
-(21, '', 'tttttttttttttttttttttttttttttt', 4, '2016-03-01 15:34:17', 'done', '', 1, '0000-00-00 00:00:00'),
-(22, '', 'dddddddddddddddddddddd', 4, '2016-03-01 15:34:17', 'todo', '', 1, '0000-00-00 00:00:00'),
-(23, '', 'kihyihihi', 4, '2016-03-01 15:34:17', 'done', '', 1, '0000-00-00 00:00:00'),
-(24, '', 'kihyihihi', 4, '2016-03-01 15:34:17', 'done', '', 1, '0000-00-00 00:00:00'),
-(25, '', 'hhththt', 4, '2016-03-01 15:34:17', 'todo', '', 1, '0000-00-00 00:00:00'),
-(26, '', 'hello !!', 4, '2016-03-01 15:34:17', 'current', '', 1, '0000-00-00 00:00:00'),
-(27, '', 'Hello ! Voyons si Ã§a fonctionne ! :D', 4, '2016-03-01 15:34:17', 'todo', '', 1, '0000-00-00 00:00:00'),
-(28, '', 'Hello ! Voyons si Ã§a fonctionne ! :D', 4, '2016-03-01 15:34:17', 'done', '', 1, '0000-00-00 00:00:00'),
-(29, '', 'dsqdqsdqdq', 2, '2016-03-01 15:34:17', 'current', '', 1, '0000-00-00 00:00:00'),
-(30, '', 'dddddddddddddddddddddd', 4, '2016-03-01 15:34:17', 'current', '', 1, '0000-00-00 00:00:00'),
-(31, '', 'cccccccccccccccccc', 4, '2016-03-01 15:34:17', 'todo', '', 1, '0000-00-00 00:00:00');
+INSERT INTO `ticket_tickets` (`id`, `position`, `title`, `content`, `user_id`, `date`, `statut`, `editing`, `img`, `treatment_id`, `dead_line`) VALUES
+(6, 0, 'ticket 3', 'ùodhfigmo rmeogh remgju rheg', 1, '2016-03-04 00:47:37', 'editing', 0, '', 1, '0000-00-00 00:00:00'),
+(8, 0, 'ticket 5', 'ùodhfigmo rmdtyjdt remgju rheg', 1, '2016-03-04 04:08:37', 'done', 0, '', 1, '0000-00-00 00:00:00'),
+(9, 0, 'ticket 6', 'ùodhfigmdtyjdteogh remgju rheg', 1, '2016-03-04 00:47:25', 'done', 0, '', 1, '0000-00-00 00:00:00'),
+(21, 0, '', 'tttttttttttttttttttttttttttttt', 4, '2016-03-04 00:47:09', 'done', 0, '', 1, '0000-00-00 00:00:00'),
+(29, 0, '', 'dsqdqsdqdq', 2, '2016-03-04 00:46:54', 'done', 0, '', 1, '0000-00-00 00:00:00'),
+(34, 0, 'dzgzdbvzdb', 'dzgzdg', 1, '2016-03-04 03:57:05', 'todo', 0, '', 1, '0000-00-00 00:00:00'),
+(37, 0, 'zdrg<sg', 'zsgsdgvszd', 1, '2016-03-04 03:58:49', 'current', 0, '', 1, '0000-00-00 00:00:00'),
+(38, 0, 'rwhwrhgrtwhg', 'rthsrhsrhrhrtyhr rydht', 1, '2016-03-04 04:08:00', 'todo', 0, '', 1, '0000-00-00 00:00:00'),
+(40, 0, 'drhgsdg', 'dsrgdsgbdzffvbd', 1, '2016-03-04 04:07:39', 'current', 0, '', 1, '0000-00-00 00:00:00'),
+(41, 0, 'drgsrg', 'sdvsdvsdv ', 1, '2016-03-04 03:59:33', 'todo', 0, '', 1, '0000-00-00 00:00:00'),
+(42, 0, 'Mon titre', 'Mon contenu', 1, '2016-03-04 04:03:49', 'todo', 1, '', 1, '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -69,8 +63,8 @@ INSERT INTO `ticket_tickets` (`id`, `title`, `content`, `user_id`, `date`, `stat
 -- Structure de la table `ticket_users`
 --
 
-CREATE TABLE IF NOT EXISTS `ticket_users` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
+CREATE TABLE `ticket_users` (
+  `id` int(11) UNSIGNED NOT NULL,
   `login` varchar(31) NOT NULL,
   `email` varchar(255) NOT NULL,
   `phone` varchar(15) NOT NULL,
@@ -80,9 +74,8 @@ CREATE TABLE IF NOT EXISTS `ticket_users` (
   `password` varchar(511) NOT NULL,
   `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `role` varchar(15) NOT NULL,
-  `statut` varchar(15) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+  `statut` varchar(15) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Contenu de la table `ticket_users`
@@ -96,6 +89,38 @@ INSERT INTO `ticket_users` (`id`, `login`, `email`, `phone`, `avatar`, `last_nam
 (5, 'toto', 'toto@toto.com', '0123456789', '1', 'toto', 'toto', '$2y$12$Hgs6yVliSvqNbzNiN2p/J.htE66k.Vpuu2pw4VMeVSdYG4R00HvNi', '2016-03-01 15:03:09', '', '');
 
 --
+-- Index pour les tables exportées
+--
+
+--
+-- Index pour la table `ticket_tickets`
+--
+ALTER TABLE `ticket_tickets`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `user_id` (`user_id`),
+  ADD KEY `treatment_id` (`treatment_id`);
+
+--
+-- Index pour la table `ticket_users`
+--
+ALTER TABLE `ticket_users`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT pour les tables exportées
+--
+
+--
+-- AUTO_INCREMENT pour la table `ticket_tickets`
+--
+ALTER TABLE `ticket_tickets`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+--
+-- AUTO_INCREMENT pour la table `ticket_users`
+--
+ALTER TABLE `ticket_users`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+--
 -- Contraintes pour les tables exportées
 --
 
@@ -105,3 +130,7 @@ INSERT INTO `ticket_users` (`id`, `login`, `email`, `phone`, `avatar`, `last_nam
 ALTER TABLE `ticket_tickets`
   ADD CONSTRAINT `ticket_tickets_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `ticket_users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `ticket_tickets_ibfk_2` FOREIGN KEY (`treatment_id`) REFERENCES `ticket_users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

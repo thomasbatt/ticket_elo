@@ -1,50 +1,37 @@
 <?php
 
-var_dump('coucou');
-var_dump('coucou');
-var_dump($_POST);
+// var_dump('coucou');
+// var_dump('coucou');
+// var_dump($_POST);
+// exit;
 
 if (isset($_POST['action']))
 {
+	/* ##PASCAL ~> Attention a l'indentation */
+	/* ##PASCAL ~> Vous vérifier ENCORE votre $_POST['action'] alors que vous l'avez déjà fait dans l'index... pas de double verif, ça sert a rien, faites le une bonne fois pour toute ici */
 	$action = $_POST['action'];
-	
 	if ($action == 'creat_ticket')
 	{
 		if (isset($_SESSION['id']))
 		{
-			// if (, $_POST['title'],  $_POST['content'],  $_POST['img'])
-			$title = $_POST['title'];
-			$content = $_POST['content'];
-			$img = $_POST['img'];
+			$title = 'Mon titre';
+			$content = 'Mon contenu';
 			$user_id = $_SESSION['id'];
-			$statut = 'editing';
-			$traitement = $user_id;
-			if (strlen($title) < 2)
-				$error = "Titre trop court (< 2)";
-			else if (strlen($title) > 2047)
-				$error = "Titre trop long (> 2047)";
-			/* ##PASCAL ~> Attention ici il manque un else ! */
-			if (strlen($content) < 6)
-				$error = "Contenu trop court (< 6)";
-			else if (strlen($content) > 2047)
-				$error = "Contenu trop long (> 2047)";
+			$statut = 'todo';
+			$img = '';
+			$treatment_id = $user_id;
+
+			$query = "INSERT INTO ticket_tickets (title, content, user_id , statut, img, treatment_id) 
+						VALUES('".$title."', '".$content."', '".$user_id."', '".$statut."', '".$img."', '".$treatment_id."') ";
+			$res = mysqli_query($db, $query);
+			
+			if ($res === false)
+				$error = "Erreur interne au serveur";
 			else
 			{
-				$title = mysqli_real_escape_string($db, $title);
-				$content = mysqli_real_escape_string($db, $content);
-				$img = mysqli_real_escape_string($db, $img);
-				$query = "INSERT INTO ticket_tickets (title, content, user_id , statut, img, treatment_id) 
-						VALUES('".$title."', '".$content."', '".$user_id."', '".$statut."', '".$img."', '".$traitement."') ";
-				$res = mysqli_query($db, $query);
-			
-				if ($res === false)
-					$error = "Erreur interne au serveur";
-				else
-				{
-					$error = 'error';
-					header('Location: index.php');
-					exit;
-				}
+				/* ##PASCAL ~> Pareil pour la redirection, mettez tickets plutot que index.php */
+				header('Location: index.php');
+				exit;
 			}
 		}
 		else
@@ -53,34 +40,33 @@ if (isset($_POST['action']))
 
 	else if ($action == 'valid_ticket')
 	{
-		if (isset($_POST['title'],  $_POST['content'],  $_POST['img']))
+		if ( isset( $_POST['ticket_id'],$_POST['title'],$_POST['content'] ) )
 		{
 			if (isset($_SESSION['id']))
 			{
+				$ticket_id = $_POST['ticket_id'];
 				$title = $_POST['title'];
 				$content = $_POST['content'];
-				$img = $_POST['img'];
-				$user_id = $_SESSION['id'];
-				$statut = 'todo';
-				$traitement = $user_id;
 		
-				if (strlen($title) < 2)
-					$error = "Titre trop court (< 2)";
-				else if (strlen($title) > 2047)
-					$error = "Titre trop long (> 2047)";
-				else if (strlen($content) < 6)
-					$error = "Contenu trop court (< 6)";
-				else if (strlen($content) > 2047)
-					$error = "Contenu trop long (> 2047)";
+				if (strlen($ticket_id) < 1)
+					$error = "ticket_id trop court (< 2)";
+				else if (strlen($ticket_id) > 31)
+					$error = "ticket_id trop long (> 2047)";
+				else if (strlen($title) < 1)
+					$error = "title trop court (< 2)";
+				else if (strlen($title) > 31)
+					$error = "title trop long (> 2047)";
+				else if (strlen($content) < 1)
+					$error = "content trop court (< 2)";
+				else if (strlen($content) > 31)
+					$error = "content trop long (> 2047)";
 				else
 				{
-					
+					$ticket_id = mysqli_real_escape_string($db, $ticket_id);
 					$title = mysqli_real_escape_string($db, $title);
 					$content = mysqli_real_escape_string($db, $content);
-					$img = mysqli_real_escape_string($db, $img);
-
 					$query = "UPDATE ticket_tickets
-								SET  title = '".$title."', content = '".$content."', user_id = '".$_SESSION['id']."', statut = '".$statut."', img = '".$img."', treatment_id = '".$traitement."'
+								SET title = '".$title."',content = '".$content."',editing = '0'
 								WHERE id = '".$ticket_id."' ";
 					$res = mysqli_query($db, $query);
 					
@@ -88,9 +74,8 @@ if (isset($_POST['action']))
 						$error = "Erreur interne au serveur";
 					else
 					{
-						/* ##PASCAL ~> Pareil pour la redirection, mettez tickets plutot que index.php */
-						header('Location: index.php');
-						exit;
+						// header('Location: index.php');
+						// exit;
 					}
 				} 
 			}
@@ -100,6 +85,7 @@ if (isset($_POST['action']))
 		else
 			$error = "Erreur interne (vous avez essayé de m'entuber)";
 	}
+
 
 	else if ($action == 'next_ticket')
 	{
@@ -137,7 +123,6 @@ if (isset($_POST['action']))
 					
 					if ($res === false)
 						$error = "Erreur interne au serveur";
-
 					else
 					{
 						header('Location: index.php');
@@ -146,7 +131,44 @@ if (isset($_POST['action']))
 				} 
 			}
 			else
-				$error = "Vous devez etre connecté";	
+				$error = "Vous devez etre connecté";
+		}
+		else
+			$error = "Erreur interne (vous avez essayé de m'entuber)";
+	}
+
+
+	else if ($action == 'edit_ticket')
+	{
+		if ( isset($_POST['ticket_id']) )
+		{
+			if (isset($_SESSION['id']))
+			{
+				$ticket_id = $_POST['ticket_id'];
+		
+				if (strlen($ticket_id) < 1)
+					$error = "ticket_id trop court (< 2)";
+				else if (strlen($ticket_id) > 31)
+					$error = "ticket_id trop long (> 2047)";
+				else
+				{
+					$ticket_id = mysqli_real_escape_string($db, $ticket_id);
+					$query = "UPDATE ticket_tickets
+								SET editing = '1'
+								WHERE id = '".$ticket_id."' ";
+					$res = mysqli_query($db, $query);
+					
+					if ($res === false)
+						$error = "Erreur interne au serveur";
+					else
+					{
+						header('Location: index.php');
+						exit;
+					}
+				} 
+			}
+			else
+				$error = "Vous devez etre connecté";
 		}
 		else
 			$error = "Erreur interne (vous avez essayé de m'entuber)";
