@@ -40,7 +40,7 @@ code {
 
 .list-group
 {
-  max-height:680px;
+ /* max-height:680px;*/
   overflow-y:auto;
 }
 .panel-heading
