@@ -208,6 +208,9 @@ b {
 	color: #0F0F0F;
 }*/
 
+
+/*Greg*/
+
 /*Intégration de JqueryUI*/
 .column {
     width: 170px;
@@ -237,3 +240,18 @@ b {
     margin: 0 1em 1em 0;
     height: 50px;
   }
+
+
+   /*espacement des colonnes */
+
+  .col-sm-4.shorter {
+    margin-top: 50px;
+}
+
+
+/* arrondi des tickets*/
+
+.panel>.list-group .list-group-item {
+    border-radius: 5px;
+}
+
