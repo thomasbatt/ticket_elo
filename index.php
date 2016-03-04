@@ -22,7 +22,7 @@ if (!$db)
 
 // SECURISATION DE LA VARIABLE PAGE -> $page
 $page = "tickets";
-$access_page = [ 'register', 'account', 'list_command', 'list_user' , 'list_plat' ];
+$access_page = ['display_ticket', 'register', 'account', 'list_command', 'list_user' , 'list_plat' ];
 
 if (isset($_GET['page']))
 {
@@ -80,5 +80,8 @@ if ( isset($traitement) )
 	require('apps/traitement_'.$traitement.'.php');
 
 // SKEL
-require('apps/skel.php');
+if (!isset($_GET['ajax']))
+	require('apps/skel.php');
+else
+	require('apps/'.$page.'.php');
 ?>

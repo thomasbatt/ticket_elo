@@ -1,8 +1,18 @@
 $('document').ready(function()
 {
-	$('.addticket').click(function()
+	$('.js_edit_ticket').click(function(evenement)
 	{
-		$('.shorter').toggleClass('col-sm-4').toggleClass('col-sm-3');
-		$('.panelticket').toggleClass('hidden');
+		evenement.preventDefault();
+		var button = $(this);
+		var id = $(this).parents('form').find('[name="ticket_id"]').val();
+		$.get('index.php?ajax&page=display_ticket&id='+id, function(html)
+		{
+			button.parents('li').replaceWith(html);
+		});
 	});
+	// $('.addticket').click(function()
+	// {
+	// 	$('.shorter').toggleClass('col-sm-4').toggleClass('col-sm-3');
+	// 	$('.panelticket').toggleClass('hidden');
+	// });
 });
