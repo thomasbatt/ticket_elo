@@ -11,8 +11,8 @@ session_start();
 /* ##PASCAL ~> Dans vos phtml vous avez oubliez des htmlentities : grep "\\$" views/* | grep -v htmlentities | grep "\\$" */
 /* ##PASCAL ~> Dans l'idéal les informations de connexion à la db se trouvent dans un fichier dédié, genre config.php qui est ensuite require */
 // DATABASE
-$domaine = 'localhost';
-// $domaine = '192.168.1.8';
+// $domaine = 'localhost';
+$domaine = '192.168.1.65';
 // $domaine = 'mysql51-71.pro';
 $db = @mysqli_connect($domaine, "thomasbazshare", "dbshare1", "thomasbazshare");
 if (!$db)
