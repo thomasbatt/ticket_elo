@@ -17,7 +17,7 @@ if (isset($_GET['id']))
 		$ticket = [
 			'id' => $ticket_user['ticket_id'],
 			'title' => $ticket_user['title'],
-			'statut' => $ticket_user['ticket_statut'],
+			// 'statut' => $ticket_user['ticket_statut'],
 			'content' => $ticket_user['content'],
 			'date' => $ticket_user['ticket_date'],
 			'dead_line' => $ticket_user['dead_line'],
