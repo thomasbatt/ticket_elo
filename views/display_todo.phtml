@@ -1,11 +1,13 @@
 <div class="panel panel-warning">
 	<div class="panel-heading">
 		<form method="post">
-		<button type="submit" class="addtickett btn glyphicon glyphicon-plus" name="action" value="creat_ticket"></button> <span class="glyphicon glyphicon-time"></span>
+		<button type="submit" class="addticket btn glyphicon glyphicon-plus" name="action" value="creat_ticket"></button> <span class="glyphicon glyphicon-time"></span>
 		<?=htmlentities($list_count)?> tickets à faire
 		</form>
 	</div>
 	<ul class="list-group" id="coltodo">
+		<div class="js_new_ticket" >
+		</div>
 		<?php require('apps/display_list.php'); ?>
 	</ul>
 </div>

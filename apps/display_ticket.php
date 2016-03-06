@@ -1,7 +1,12 @@
 <?php
-if (isset($_GET['id']))
+// var_dump($_GET);
+// var_dump($_POST);
+
+if ( isset($_GET['id'], $_GET['statut'], $_GET['editing'] ))
 {
 	$id = intval($_GET['id']);
+	$statut = mysqli_real_escape_string($db,$_GET['statut']);
+	$editing = intval($_GET['editing']);
 	$query = "SELECT 
 				ticket_tickets.id AS ticket_id, title, ticket_tickets.statut AS ticket_statut, content, ticket_tickets.date AS ticket_date, dead_line, img AS url_img, treatment_id, ticket_tickets.editing,
 				ticket_users.id AS user_id, ticket_users.avatar AS url_avatar, ticket_users.first_name, ticket_users.last_name, ticket_users.login, ticket_users.phone, ticket_users.statut AS user_statut
@@ -10,20 +15,18 @@ if (isset($_GET['id']))
 				WHERE ticket_tickets.id = '".$id."'  
 				ORDER BY ticket_tickets.id DESC";
 	$res_user = mysqli_query($db, $query);
-	$ticket['statut'] = 'todo';
-	$editing = true;
+
 	while ($ticket_user = mysqli_fetch_assoc($res_user))
 	{
 		$ticket = [
 			'id' => $ticket_user['ticket_id'],
 			'title' => $ticket_user['title'],
-			// 'statut' => $ticket_user['ticket_statut'],
 			'content' => $ticket_user['content'],
 			'date' => $ticket_user['ticket_date'],
 			'dead_line' => $ticket_user['dead_line'],
-			'url_img' => $ticket_user['url_img'],
+			'img' => $ticket_user['url_img'],
 			'treatment_id' => $ticket_user['treatment_id'],
-			// 'editing' => $ticket_user['editing']
+			'statut' => $ticket_user['ticket_statut'],
 		];
 		$user = [
 			'id' => $ticket_user['user_id'],

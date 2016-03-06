@@ -5,7 +5,7 @@ html{
 body{
 	-webkit-background-size: cover;
 	background: url(../images/black-white-background-2.jpg) no-repeat ;
-	background-size: 100% 100%;
+	background-size: cover;
 	/*background: #0F0F0F;*/
 	/*background: rgba(255, 255, 255, 0.1) ;*/
 	/*background: #000;*/

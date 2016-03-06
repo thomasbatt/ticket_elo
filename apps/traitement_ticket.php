@@ -3,6 +3,8 @@
 // var_dump('coucou');
 // var_dump('coucou');
 // var_dump($_POST);
+// var_dump($_FILES);
+
 // exit;
 
 if (isset($_POST['action']))
@@ -14,11 +16,11 @@ if (isset($_POST['action']))
 	{
 		if (isset($_SESSION['id']))
 		{
-			$title = '';
-			$content = '';
+			$title = 'Mon titre';
+			$content = 'Mon contenu';
 			$user_id = $_SESSION['id'];
 			$statut = 'todo';
-			$img = $_FILES['img'];
+			$img = 'image_par_defaut.jpg';
 			$treatment_id = $user_id;
 
 			$query = "INSERT INTO ticket_tickets (title, content, user_id , statut, img, treatment_id) 
@@ -42,14 +44,13 @@ if (isset($_POST['action']))
 
 	else if ($action == 'valid_ticket')
 	{
-		if ( isset( $_POST['ticket_id'],$_POST['title'],$_POST['content'], $_FILES['img']) )
+		if ( isset( $_POST['ticket_id'],$_POST['title'],$_POST['content'] ))
 		{
 			if (isset($_SESSION['id']))
 			{
 				$ticket_id = $_POST['ticket_id'];
 				$title = $_POST['title'];
 				$content = $_POST['content'];
-				$img = $_FILES['img'];
 		
 				if (strlen($ticket_id) < 1)
 					$error = "ticket_id trop court (< 2)";
@@ -65,34 +66,40 @@ if (isset($_POST['action']))
 					$error = "content trop long (> 2047)";
 				else
 				{
-					$ticket_id = mysqli_real_escape_string($db, $ticket_id);
-					$title = mysqli_real_escape_string($db, $title);
-					$content = mysqli_real_escape_string($db, $content);
-					
-
-					$extensions_valides = array( 'jpg' , 'jpeg' , 'gif' , 'png' );
-					$extension_upload = strtolower(  substr(  strrchr($_FILES['img']['name'], '.')  ,1)  );
-				
-					if ( in_array($extension_upload,$extensions_valides) ) 
-					
-					$name = md5(uniqid(rand(), true)).'.'.$extension_upload;
-					$img = move_uploaded_file($_FILES['img']['tmp_name'], 'public/images/'.$name);
-					if ($img)
+					if ( isset($_FILES['img']) && !empty($_FILES['img']['name']) )
 					{
+						$extensions_valides = array( 'jpg' , 'jpeg' , 'gif' , 'png' );
+						$extension_upload = strtolower(  substr(  strrchr($_FILES['img']['name'], '.')  ,1)  );
+						if ( in_array($extension_upload,$extensions_valides) )
 
-					$query = "UPDATE ticket_tickets
-								SET title = '".$title."',content = '".$content."',editing = '0', img = '".$name."'
-								WHERE id = '".$ticket_id."' ";
-					$res = mysqli_query($db, $query);
-					
-					if ($res === false)
-						$error = "Erreur interne au serveur";
+						$name = md5(uniqid(rand(), true)).'.'.$extension_upload;
+						$img = move_uploaded_file($_FILES['img']['tmp_name'], 'public/images/'.$name);
+					}
 					else
 					{
-						// header('Location: index.php');
-						// exit;
+						$name = 'image_par_defaut.jpg';
+						$img = true;
 					}
-					} 
+					if ($img)
+					{
+						$ticket_id = mysqli_real_escape_string($db, $ticket_id);
+						$title = mysqli_real_escape_string($db, $title);
+						$content = mysqli_real_escape_string($db, $content);
+						$query = "UPDATE ticket_tickets
+									SET title = '".$title."',content = '".$content."',editing = '0', img = '".$name."'
+									WHERE id = '".$ticket_id."' ";
+						$res = mysqli_query($db, $query);
+						
+						if ($res === false)
+							$error = "Erreur interne au serveur";
+						else
+						{
+							// header('Location: index.php');
+							// exit;
+						}
+					}
+					else
+						$error = "image non telechargee";
 				}
 			}	
 			else

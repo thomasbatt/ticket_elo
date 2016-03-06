@@ -17,7 +17,7 @@ require('apps/config.php');
 
 // SECURISATION DE LA VARIABLE PAGE -> $page
 $page = "tickets";
-$access_page = ['display_ticket', 'register', 'account', 'list_command', 'list_user' , 'list_plat' ];
+$access_page = ['display_ticket','display_new', 'register', 'account', 'list_command', 'list_user' , 'list_plat' ];
 
 if (isset($_GET['page']))
 {
