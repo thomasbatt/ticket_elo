@@ -30,6 +30,7 @@ if (isset($_GET['page']))
 		exit;
 	}
 }
+
 // SECURISATION DES FICHIERS DE TRAITEMENTS
 $traitements_page = [
 	'account'=>'user',
@@ -48,6 +49,7 @@ $traitements_action = [
 /* ##PASCAL ~> Vous avez 3 if qui se suivent pour traiter la même chose et sans else, attention il pourrait y avoir des comportements imprévus */
 if ( isset($traitements_page[$page]) )
 	$traitement = $traitements_page[$page];
+
 
 if (isset($_POST['action']))
 {

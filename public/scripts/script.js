@@ -18,7 +18,6 @@ $('document').ready(function()
 		evenement.preventDefault();
 		var button = $(this);
 		var id = $(this).parents('form').find('[name="ticket_id"]').val();
-
 		$.get('index.php?ajax&page=display_ticket&id='+id+'&statut=todo&editing=1', function(html)
 		{
 			// alert(html);

@@ -4,7 +4,6 @@
 // var_dump('coucou');
 // var_dump($_POST);
 // var_dump($_FILES);
-
 // exit;
 
 if (isset($_POST['action']))
@@ -26,9 +25,6 @@ if (isset($_POST['action']))
 			$query = "INSERT INTO ticket_tickets (title, content, user_id , statut, img, treatment_id) 
 						VALUES('".$title."', '".$content."', '".$user_id."', '".$statut."', '".$img."', '".$treatment_id."') ";
 			$res = mysqli_query($db, $query);
-			
-
-
 			if ($res === false)
 				$error = "Erreur interne au serveur";
 			else
