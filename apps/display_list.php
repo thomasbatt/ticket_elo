@@ -17,7 +17,7 @@ while ($ticket_user = mysqli_fetch_assoc($res_user))
 		'content' => $ticket_user['content'],
 		'date' => $ticket_user['ticket_date'],
 		'dead_line' => $ticket_user['dead_line'],
-		'url_img' => $ticket_user['url_img'],
+		'img' => $ticket_user['url_img'],
 		'treatment_id' => $ticket_user['treatment_id'],
 		'editing' => $ticket_user['editing']
 	];

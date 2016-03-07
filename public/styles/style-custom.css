@@ -9,26 +9,15 @@ body{
 	/*background: #0F0F0F;*/
 	/*background: rgba(255, 255, 255, 0.1) ;*/
 	/*background: #000;*/
-	color: #868686;
+	color: #4D4D4D;
 }
 
-h1{
-  color: #FF9906;
-  font-weight: bold;
-}
 
-.modifH3{
-	color: #FF9906;
-	font-weight: bold;
-}
 .container{
 	/*background: #000;*/
 	/*background: #0F0F0F;*/
 }
 
-.stats{
-	color: #fff;
-}
 img{
 	max-width: 100%;
 /*	width: 100px ;
@@ -45,14 +34,9 @@ img{
 
 b {
 	color: #fff;
-	text-transform: capitalize;
-	font-style: italic;
-
 }
 
 /*--------------------------- navbar .................................*/
-
-
 .logo .img-logo{
 	height: 50px;
 }
@@ -69,10 +53,6 @@ b {
 .navbar-brand{
 	background: rgba(0, 0, 0, 0.6);
 }
-.navbar-brand p:hover{
-	color: #FF9906;
-}
-
 .navbar-inverse{
 	background-image: linear-gradient(to bottom,rgba(60, 60, 60, 0.81) 0,RGBA(34, 34, 34, 0.8) 100%);
 	background-color: rgba(34, 34, 34, 0);;
@@ -81,9 +61,7 @@ b {
 	bottom: 0;
 	width: 100%;
 	height: 50px;
-
 }
-
 
 
 /*.navbar-brand a:hover{
@@ -207,51 +185,3 @@ b {
 /*label strong{
 	color: #0F0F0F;
 }*/
-
-
-/*Greg*/
-
-/*Intégration de JqueryUI*/
-.column {
-    width: 170px;
-    float: left;
-    padding-bottom: 100px;
-  }
-  .portlet {
-    margin: 0 1em 1em 0;
-    padding: 0.3em;
-  }
-  .portlet-header {
-    padding: 0.2em 0.3em;
-    margin-bottom: 0.5em;
-    position: relative;
-  }
-  .portlet-toggle {
-    position: absolute;
-    top: 50%;
-    right: 0;
-    margin-top: -8px;
-  }
-  .portlet-content {
-    padding: 0.4em;
-  }
-  .portlet-placeholder {
-    border: 1px dotted black;
-    margin: 0 1em 1em 0;
-    height: 50px;
-  }
-
-
-   /*espacement des colonnes */
-
-  .col-sm-4.shorter {
-    margin-top: 50px;
-}
-
-
-/* arrondi des tickets*/
-
-.panel>.list-group .list-group-item {
-    border-radius: 5px;
-}
-

@@ -17,7 +17,7 @@ require('apps/config.php');
 
 // SECURISATION DE LA VARIABLE PAGE -> $page
 $page = "tickets";
-$access_page = ['display_ticket', 'register', 'account', 'list_command', 'list_user' , 'list_plat' ];
+$access_page = ['display_ticket','display_new', 'register', 'account', 'list_command', 'list_user' , 'list_plat' ];
 
 if (isset($_GET['page']))
 {
@@ -30,6 +30,7 @@ if (isset($_GET['page']))
 		exit;
 	}
 }
+
 // SECURISATION DES FICHIERS DE TRAITEMENTS
 $traitements_page = [
 	'account'=>'user',
@@ -48,6 +49,7 @@ $traitements_action = [
 /* ##PASCAL ~> Vous avez 3 if qui se suivent pour traiter la même chose et sans else, attention il pourrait y avoir des comportements imprévus */
 if ( isset($traitements_page[$page]) )
 	$traitement = $traitements_page[$page];
+
 
 if (isset($_POST['action']))
 {

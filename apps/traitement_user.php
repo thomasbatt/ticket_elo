@@ -2,6 +2,7 @@
  // DEBUG
 // var_dump('coucou');
 // var_dump('coucou');
+
 // var_dump($_POST);
 // exit;
 // Etape 1
@@ -113,13 +114,13 @@ if (isset($_POST['action']))
 					// exit;
 					if ($res)
 					{
-						// Etape 5
+					// Etape 5
 
-								// var_dump('coucou_register');
-						// Etape 5
+					// Etape 5
 								$_SESSION['id'] = mysqli_insert_id($db);
 								$_SESSION['login'] = $login;
 								$_SESSION['role'] = 'user';
+
 								$_SESSION['avatar'] = $name;
 
 								/* ##PASCAL ~> Et la mise a jour de $_SESSION['avatar'] ? */
