@@ -68,31 +68,25 @@ if (isset($_POST['action']))
 					$ticket_id = mysqli_real_escape_string($db, $ticket_id);
 					$title = mysqli_real_escape_string($db, $title);
 					$content = mysqli_real_escape_string($db, $content);
-					
-
-					$extensions_valides = array( 'jpg' , 'jpeg' , 'gif' , 'png' );
-					$extension_upload = strtolower(  substr(  strrchr($_FILES['img']['name'], '.')  ,1)  );
-				
-					if ( in_array($extension_upload,$extensions_valides) ) 
-					
-					$name = md5(uniqid(rand(), true)).'.'.$extension_upload;
-					$img = move_uploaded_file($_FILES['img']['tmp_name'], 'public/images/'.$name);
-					if ($img)
+					$name = '';
+					if (isset($_FILES['img']['error']) && $_FILES['img']['error'] != 4)
 					{
-
-					$query = "UPDATE ticket_tickets
-								SET title = '".$title."',content = '".$content."',editing = '0', img = '".$name."'
-								WHERE id = '".$ticket_id."' ";
-					$res = mysqli_query($db, $query);
+						$extensions_valides = array( 'jpg' , 'jpeg' , 'gif' , 'png' );
+						$extension_upload = strtolower(  substr(  strrchr($_FILES['img']['name'], '.')  ,1)  );
 					
+						if ( in_array($extension_upload,$extensions_valides) ) 
+						{
+							$path = md5(uniqid(rand(), true)).'.'.$extension_upload;
+							$name = ",img='".$path."'";
+							$img = move_uploaded_file($_FILES['img']['tmp_name'], 'public/images/'.$path);
+						}
+					}
+					$query = "UPDATE ticket_tickets
+								SET title = '".$title."',content = '".$content."',editing = '0'".$name."
+								WHERE id = '".$ticket_id."'";
+					$res = mysqli_query($db, $query);
 					if ($res === false)
 						$error = "Erreur interne au serveur";
-					else
-					{
-						// header('Location: index.php');
-						// exit;
-					}
-					} 
 				}
 			}	
 			else
